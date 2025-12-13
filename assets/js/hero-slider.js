@@ -164,16 +164,20 @@ class HeroSlider {
 
 		// Remove active class from current slide
 		this.slides[this.currentSlide].classList.remove('active');
-		this.dots[this.currentSlide].classList.remove('active');
-		this.dots[this.currentSlide].setAttribute('aria-selected', 'false');
+		if (this.dots[this.currentSlide]) {
+			this.dots[this.currentSlide].classList.remove('active');
+			this.dots[this.currentSlide].setAttribute('aria-selected', 'false');
+		}
 
 		// Update current slide
 		this.currentSlide = index;
 
 		// Add active class to new slide
 		this.slides[this.currentSlide].classList.add('active');
-		this.dots[this.currentSlide].classList.add('active');
-		this.dots[this.currentSlide].setAttribute('aria-selected', 'true');
+		if (this.dots[this.currentSlide]) {
+			this.dots[this.currentSlide].classList.add('active');
+			this.dots[this.currentSlide].setAttribute('aria-selected', 'true');
+		}
 
 		// Announce to screen readers
 		this.announceSlide(index);
@@ -250,7 +254,8 @@ class HeroSlider {
 			this.slider.appendChild(liveRegion);
 		}
 
-		const slideTitle = this.slides[index].querySelector('.slide-title').textContent;
+		const titleElement = this.slides[index].querySelector('.slide-title');
+		const slideTitle = titleElement ? titleElement.textContent : `Slide ${index + 1}`;
 		liveRegion.textContent = `Slide ${index + 1} of ${this.totalSlides}: ${slideTitle}`;
 	}
 }

@@ -21,6 +21,9 @@ if ( ! $slider_enabled ) {
 }
 
 // Query featured poems
+// Note: For optimal performance on large sites, ensure the postmeta table
+// has an index on meta_key. WordPress creates this by default, but verify
+// if experiencing slow queries.
 $featured_args = array(
 	'post_type'      => 'poem',
 	'posts_per_page' => $posts_count,
