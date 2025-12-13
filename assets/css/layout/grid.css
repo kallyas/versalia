@@ -1,0 +1,95 @@
+/**
+ * Grid and Layout System
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+/* ====================================
+   Container
+   ==================================== */
+
+.site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.site-content {
+	flex: 1;
+	padding: var(--spacing-lg) var(--gutter);
+}
+
+/* ====================================
+   Content Width
+   ==================================== */
+
+.site-main {
+	max-width: var(--content-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.poem-single .site-main {
+	max-width: var(--content-width);
+	padding-left: var(--margin-mobile);
+	padding-right: var(--margin-mobile);
+}
+
+/* ====================================
+   Grid System
+   ==================================== */
+
+.poem-archive-container.view-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: var(--spacing-xl);
+	margin-top: var(--spacing-xl);
+}
+
+.poem-archive-container.view-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-2xl);
+	margin-top: var(--spacing-xl);
+}
+
+/* ====================================
+   Sidebar Layout
+   ==================================== */
+
+@media (min-width: 1024px) {
+	.site-content {
+		display: grid;
+		grid-template-columns: 1fr 300px;
+		gap: var(--spacing-2xl);
+		max-width: var(--wide-width);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.no-sidebar .site-content {
+		grid-template-columns: 1fr;
+	}
+
+	.single-poem .site-content {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ====================================
+   Responsive Spacing
+   ==================================== */
+
+@media (min-width: 768px) {
+	.poem-single .site-main {
+		padding-left: var(--margin-desktop);
+		padding-right: var(--margin-desktop);
+	}
+}
+
+@media (max-width: 768px) {
+	.poem-archive-container.view-grid {
+		grid-template-columns: 1fr;
+	}
+}
