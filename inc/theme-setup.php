@@ -262,13 +262,33 @@ function versalia_enqueue_assets(): void {
 	);
 
 	// Bookmarks script (for poem pages and archives)
-	if ( is_singular( 'poem' ) || is_post_type_archive( 'poem' ) || is_front_page() || is_home() ) {
+	if ( is_singular( 'poem' ) || is_post_type_archive( 'poem' ) || is_front_page() || is_home() || is_tax( array( 'collection', 'poetry_form' ) ) ) {
 		wp_enqueue_script(
 			'versalia-bookmarks',
 			VERSALIA_THEME_URI . '/assets/js/bookmarks.js',
 			array(),
 			VERSALIA_VERSION,
 			true
+		);
+	}
+
+	// Load More script (for poem archives and taxonomies)
+	if ( is_post_type_archive( 'poem' ) || is_tax( array( 'collection', 'poetry_form' ) ) ) {
+		wp_enqueue_script(
+			'versalia-load-more',
+			VERSALIA_THEME_URI . '/assets/js/load-more.js',
+			array(),
+			VERSALIA_VERSION,
+			true
+		);
+
+		// Pass WordPress data to JavaScript
+		wp_localize_script(
+			'versalia-load-more',
+			'versaliaLoadMore',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			)
 		);
 	}
 

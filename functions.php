@@ -63,3 +63,8 @@ require VERSALIA_THEME_DIR . '/inc/customizer.php';
  * Custom widgets
  */
 require VERSALIA_THEME_DIR . '/inc/widgets.php';
+
+/**
+ * AJAX handlers
+ */
+require VERSALIA_THEME_DIR . '/inc/ajax-handlers.php';
