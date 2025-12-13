@@ -1,0 +1,42 @@
+{
+  "name": "versalia",
+  "version": "1.0.0",
+  "description": "A minimal, typography-first WordPress theme for poetry and literary content",
+  "author": "Tumuhirwe Iden",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://versalia.tumuhirwe.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kallyas/versalia"
+  },
+  "bugs": {
+    "url": "https://github.com/kallyas/versalia/issues"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "poetry",
+    "literature",
+    "typography"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint:js": "eslint assets/js/**/*.js",
+    "lint:css": "stylelint 'assets/css/**/*.css'",
+    "lint": "npm run lint:js && npm run lint:css"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^7.2.1",
+    "eslint": "^8.57.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "vite": "^7.2.7"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ]
+}
