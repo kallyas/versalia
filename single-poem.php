@@ -32,6 +32,9 @@ get_header();
 		// Poem navigation (previous/next)
 		versalia_poem_navigation();
 
+		// Related poems section
+		get_template_part( 'template-parts/poem/related', 'poems' );
+
 		// If comments are open or we have at least one comment, load up the comment template.
 		if ( comments_open() || get_comments_number() ) :
 			comments_template();
