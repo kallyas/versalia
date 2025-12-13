@@ -179,19 +179,6 @@ button:disabled,
 	}
 }
 
-/* ====================================
-   Poem Archive Articles (for fade-in)
-   ==================================== */
-.poem-archive-container .poem-excerpt {
-	transition: opacity var(--transition-base), transform var(--transition-base);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.poem-archive-container .poem-excerpt {
-		transition: none;
-	}
-}
-
 /* Screen reader text */
 .screen-reader-text {
 	position: absolute;

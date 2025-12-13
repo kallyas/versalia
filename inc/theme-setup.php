@@ -287,7 +287,8 @@ function versalia_enqueue_assets(): void {
 			'versalia-load-more',
 			'versaliaLoadMore',
 			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
+				'ajaxAction' => VERSALIA_LOAD_MORE_AJAX_ACTION,
 			)
 		);
 	}

@@ -92,7 +92,7 @@
 		try {
 			// Prepare form data
 			const formData = new URLSearchParams({
-				action: 'versalia_load_more',
+				action: versaliaLoadMore.ajaxAction,
 				page: currentPage + 1,
 				post_type: postType,
 				taxonomy: taxonomy,

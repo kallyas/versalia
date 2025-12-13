@@ -18,6 +18,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Handle AJAX request to load more poems.
  *
  * Responds with JSON containing HTML content and pagination information.
+ *
+ * Expected POST parameters:
+ * - nonce (string): Security nonce for verification
+ * - page (int): Page number to load
+ * - post_type (string): Post type to query (default: 'poem')
+ * - taxonomy (string): Taxonomy slug for filtering (optional)
+ * - term_id (int): Term ID for taxonomy filtering (optional)
+ *
+ * JSON Response on success:
+ * - html (string): Rendered HTML for the posts
+ * - max_pages (int): Total number of pages available
+ * - current_page (int): Current page number
+ * - found_posts (int): Total number of posts found
+ *
+ * JSON Response on error:
+ * - message (string): Error message
  */
 function versalia_load_more_poems(): void {
 	// Verify nonce for security
