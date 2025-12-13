@@ -200,6 +200,47 @@ function versalia_collections( ?int $post_id = null, string $before = '', string
 }
 
 /**
+ * Display taxonomy badges.
+ *
+ * @param string   $taxonomy Taxonomy name.
+ * @param int|null $post_id  Post ID. Defaults to current post.
+ * @param int      $limit    Maximum number of terms to display.
+ */
+function versalia_taxonomy_badges( string $taxonomy, ?int $post_id = null, int $limit = 3 ): void {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+
+	$terms = get_the_terms( $post_id, $taxonomy );
+
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return;
+	}
+
+	$terms        = array_slice( $terms, 0, $limit );
+	$taxonomy_obj = get_taxonomy( $taxonomy );
+
+	if ( ! $taxonomy_obj ) {
+		return;
+	}
+
+	echo '<div class="taxonomy-badges taxonomy-' . esc_attr( $taxonomy ) . '">';
+
+	foreach ( $terms as $term ) {
+		printf(
+			'<a href="%s" class="taxonomy-badge badge-%s" title="%s">%s</a>',
+			esc_url( get_term_link( $term ) ),
+			esc_attr( $term->slug ),
+			/* translators: %s: Taxonomy name */
+			esc_attr( sprintf( __( 'View all %s', 'versalia' ), $taxonomy_obj->labels->name ) ),
+			esc_html( $term->name )
+		);
+	}
+
+	echo '</div>';
+}
+
+/**
  * Display breadcrumb navigation.
  */
 function versalia_breadcrumb(): void {
