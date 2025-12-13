@@ -14,8 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Define constants for AJAX actions
-define( 'VERSALIA_LOAD_MORE_ACTION', 'versalia_load_more' );
+// Define constants for AJAX
+define( 'VERSALIA_LOAD_MORE_NONCE_ACTION', 'versalia_load_more_nonce' );
+define( 'VERSALIA_LOAD_MORE_AJAX_ACTION', 'versalia_load_more' );
 
 /**
  * Handle AJAX request to load more poems.
@@ -24,7 +25,7 @@ define( 'VERSALIA_LOAD_MORE_ACTION', 'versalia_load_more' );
  */
 function versalia_load_more_poems(): void {
 	// Verify nonce for security
-	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), VERSALIA_LOAD_MORE_ACTION ) ) {
+	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), VERSALIA_LOAD_MORE_NONCE_ACTION ) ) {
 		wp_send_json_error( array( 'message' => __( 'Security check failed', 'versalia' ) ) );
 		return;
 	}
@@ -79,5 +80,5 @@ function versalia_load_more_poems(): void {
 		wp_send_json_error( array( 'message' => __( 'No more posts found', 'versalia' ) ) );
 	}
 }
-add_action( 'wp_ajax_load_more_poems', 'versalia_load_more_poems' );
-add_action( 'wp_ajax_nopriv_load_more_poems', 'versalia_load_more_poems' );
+add_action( 'wp_ajax_' . VERSALIA_LOAD_MORE_AJAX_ACTION, 'versalia_load_more_poems' );
+add_action( 'wp_ajax_nopriv_' . VERSALIA_LOAD_MORE_AJAX_ACTION, 'versalia_load_more_poems' );

@@ -92,7 +92,7 @@
 		try {
 			// Prepare form data
 			const formData = new URLSearchParams({
-				action: 'load_more_poems',
+				action: 'versalia_load_more',
 				page: currentPage + 1,
 				post_type: postType,
 				taxonomy: taxonomy,

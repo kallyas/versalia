@@ -65,7 +65,7 @@ get_header();
 						data-post-type="poem"
 						data-taxonomy="<?php echo esc_attr( $taxonomy ); ?>"
 						data-term-id="<?php echo esc_attr( $term_id ); ?>"
-						data-nonce="<?php echo esc_attr( wp_create_nonce( VERSALIA_LOAD_MORE_ACTION ) ); ?>"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( VERSALIA_LOAD_MORE_NONCE_ACTION ) ); ?>"
 						data-loading-text="<?php esc_attr_e( 'Loading...', 'versalia' ); ?>">
 					<?php esc_html_e( 'Load More Poems', 'versalia' ); ?>
 				</button>
