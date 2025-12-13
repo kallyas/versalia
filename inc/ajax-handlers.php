@@ -14,10 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Define constants for AJAX
-define( 'VERSALIA_LOAD_MORE_NONCE_ACTION', 'versalia_load_more_nonce' );
-define( 'VERSALIA_LOAD_MORE_AJAX_ACTION', 'versalia_load_more' );
-
 /**
  * Handle AJAX request to load more poems.
  *

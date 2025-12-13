@@ -30,6 +30,12 @@ define( 'VERSALIA_THEME_DIR', get_template_directory() );
 define( 'VERSALIA_THEME_URI', get_template_directory_uri() );
 
 /**
+ * Define AJAX constants
+ */
+define( 'VERSALIA_LOAD_MORE_NONCE_ACTION', 'versalia_load_more_nonce' );
+define( 'VERSALIA_LOAD_MORE_AJAX_ACTION', 'versalia_load_more' );
+
+/**
  * Theme setup and configuration
  */
 require VERSALIA_THEME_DIR . '/inc/theme-setup.php';
