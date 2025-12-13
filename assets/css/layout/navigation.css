@@ -1,0 +1,222 @@
+/**
+ * Navigation Styles
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+.main-navigation {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+}
+
+.primary-menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: var(--spacing-lg);
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.primary-menu li {
+	margin: 0;
+}
+
+.primary-menu a {
+	color: var(--color-text);
+	text-decoration: none;
+	padding: var(--spacing-xs) var(--spacing-sm);
+	display: block;
+	transition: color var(--transition-fast);
+	font-family: var(--font-ui);
+	font-size: var(--font-size-sm);
+	letter-spacing: var(--letter-spacing-wide);
+	text-transform: uppercase;
+}
+
+.primary-menu a:hover,
+.primary-menu a:focus,
+.primary-menu .current-menu-item a {
+	color: var(--color-accent);
+}
+
+/* ====================================
+   Mobile Menu Toggle
+   ==================================== */
+
+.menu-toggle {
+	display: none;
+	background: none;
+	border: 1px solid var(--color-border);
+	padding: var(--spacing-xs) var(--spacing-sm);
+	cursor: pointer;
+	border-radius: var(--radius-sm);
+	color: var(--color-text);
+}
+
+.menu-toggle:hover {
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+.menu-toggle-icon {
+	display: block;
+	width: 24px;
+	height: 2px;
+	background-color: currentColor;
+	position: relative;
+}
+
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	background-color: currentColor;
+	left: 0;
+}
+
+.menu-toggle-icon::before {
+	top: -8px;
+}
+
+.menu-toggle-icon::after {
+	bottom: -8px;
+}
+
+/* ====================================
+   Reading Mode Toggle
+   ==================================== */
+
+.poem-controls {
+	display: flex;
+	gap: var(--spacing-sm);
+}
+
+.reading-mode-toggle {
+	background: none;
+	border: 1px solid var(--color-border);
+	padding: var(--spacing-xs);
+	cursor: pointer;
+	border-radius: var(--radius-sm);
+	color: var(--color-text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all var(--transition-fast);
+}
+
+.reading-mode-toggle:hover {
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+/* ====================================
+   Responsive Navigation
+   ==================================== */
+
+@media (max-width: 768px) {
+	.menu-toggle {
+		display: block;
+	}
+
+	.primary-menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		margin-top: var(--spacing-sm);
+		padding: var(--spacing-md);
+		flex-direction: column;
+		gap: 0;
+		z-index: var(--z-dropdown);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.primary-menu.toggled {
+		display: flex;
+	}
+
+	.primary-menu li {
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.primary-menu li:last-child {
+		border-bottom: none;
+	}
+
+	.primary-menu a {
+		padding: var(--spacing-md);
+	}
+}
+
+/* ====================================
+   Breadcrumb Navigation
+   ==================================== */
+
+.breadcrumb {
+	margin-bottom: var(--spacing-lg);
+	font-size: var(--font-size-sm);
+	color: var(--color-text-light);
+}
+
+.breadcrumb ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-xs);
+}
+
+.breadcrumb li {
+	margin: 0;
+}
+
+.breadcrumb li::after {
+	content: '›';
+	margin-left: var(--spacing-xs);
+	color: var(--color-text-light);
+}
+
+.breadcrumb li:last-child::after {
+	content: '';
+}
+
+.breadcrumb a {
+	color: var(--color-text-light);
+}
+
+.breadcrumb a:hover {
+	color: var(--color-accent);
+}
+
+/* ====================================
+   Skip Link
+   ==================================== */
+
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 2.5em;
+	z-index: var(--z-tooltip);
+	background-color: var(--color-surface);
+	color: var(--color-text);
+	padding: var(--spacing-md) var(--spacing-lg);
+	text-decoration: none;
+	box-shadow: var(--shadow-lg);
+	border-radius: var(--radius-md);
+}
+
+.skip-link:focus {
+	left: var(--spacing-md);
+}
