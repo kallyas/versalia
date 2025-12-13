@@ -15,6 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+
+// Display breadcrumb navigation
+versalia_breadcrumb();
 ?>
 
 <main id="primary" class="site-main poem-archive">

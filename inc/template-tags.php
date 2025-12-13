@@ -200,6 +200,48 @@ function versalia_collections( ?int $post_id = null, string $before = '', string
 }
 
 /**
+ * Display breadcrumb navigation with schema.org structured data.
+ * Display taxonomy badges.
+ *
+ * @param string   $taxonomy Taxonomy name.
+ * @param int|null $post_id  Post ID. Defaults to current post.
+ * @param int      $limit    Maximum number of terms to display.
+ */
+function versalia_taxonomy_badges( string $taxonomy, ?int $post_id = null, int $limit = 3 ): void {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+
+	$terms = get_the_terms( $post_id, $taxonomy );
+
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return;
+	}
+
+	$terms        = array_slice( $terms, 0, $limit );
+	$taxonomy_obj = get_taxonomy( $taxonomy );
+
+	if ( ! $taxonomy_obj ) {
+		return;
+	}
+
+	echo '<div class="taxonomy-badges taxonomy-' . esc_attr( $taxonomy ) . '">';
+
+	foreach ( $terms as $term ) {
+		printf(
+			'<a href="%s" class="taxonomy-badge badge-%s" title="%s">%s</a>',
+			esc_url( get_term_link( $term ) ),
+			esc_attr( $term->slug ),
+			/* translators: %s: Taxonomy name */
+			esc_attr( sprintf( __( 'View all %s', 'versalia' ), $taxonomy_obj->labels->name ) ),
+			esc_html( $term->name )
+		);
+	}
+
+	echo '</div>';
+}
+
+/**
  * Display breadcrumb navigation.
  */
 function versalia_breadcrumb(): void {
@@ -207,28 +249,95 @@ function versalia_breadcrumb(): void {
 		return;
 	}
 
-	echo '<nav class="breadcrumb" aria-label="' . esc_attr__( 'Breadcrumb', 'versalia' ) . '">';
-	echo '<ol>';
+	echo '<nav class="breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'versalia' ) . '">';
+	echo '<ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">';
+
+	$position = 1;
 
 	// Home
-	echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'versalia' ) . '</a></li>';
+	printf(
+		'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="%s"><span itemprop="name">%s</span></a><meta itemprop="position" content="%d" /></li>',
+		esc_url( home_url( '/' ) ),
+		esc_html__( 'Home', 'versalia' ),
+		$position++
+	);
 
 	if ( is_singular( 'poem' ) ) {
-		echo '<li><a href="' . esc_url( get_post_type_archive_link( 'poem' ) ) . '">' . esc_html__( 'Poems', 'versalia' ) . '</a></li>';
-		echo '<li aria-current="page">' . esc_html( get_the_title() ) . '</li>';
+		// Add collection or poetry form if available
+		$collections = get_the_terms( get_the_ID(), 'collection' );
+		if ( $collections && ! is_wp_error( $collections ) ) {
+			$collection = array_shift( $collections );
+			printf(
+				'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="%s"><span itemprop="name">%s</span></a><meta itemprop="position" content="%d" /></li>',
+				esc_url( get_term_link( $collection ) ),
+				esc_html( $collection->name ),
+				$position++
+			);
+		} else {
+			// Fallback to Poems archive
+			printf(
+				'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="%s"><span itemprop="name">%s</span></a><meta itemprop="position" content="%d" /></li>',
+				esc_url( get_post_type_archive_link( 'poem' ) ),
+				esc_html__( 'Poems', 'versalia' ),
+				$position++
+			);
+		}
+
+		// Current poem
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html( get_the_title() ),
+			$position
+		);
 	} elseif ( is_post_type_archive( 'poem' ) ) {
-		echo '<li aria-current="page">' . esc_html__( 'Poems', 'versalia' ) . '</li>';
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html__( 'Poems', 'versalia' ),
+			$position
+		);
 	} elseif ( is_tax( 'collection' ) || is_tax( 'poetry_form' ) ) {
-		echo '<li><a href="' . esc_url( get_post_type_archive_link( 'poem' ) ) . '">' . esc_html__( 'Poems', 'versalia' ) . '</a></li>';
-		echo '<li aria-current="page">' . esc_html( single_term_title( '', false ) ) . '</li>';
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="%s"><span itemprop="name">%s</span></a><meta itemprop="position" content="%d" /></li>',
+			esc_url( get_post_type_archive_link( 'poem' ) ),
+			esc_html__( 'Poems', 'versalia' ),
+			$position++
+		);
+
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html( single_term_title( '', false ) ),
+			$position
+		);
+	} elseif ( is_author() ) {
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html( get_the_author() ),
+			$position
+		);
 	} elseif ( is_archive() ) {
-		echo '<li aria-current="page">' . esc_html( get_the_archive_title() ) . '</li>';
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html( get_the_archive_title() ),
+			$position
+		);
 	} elseif ( is_search() ) {
-		echo '<li aria-current="page">' . esc_html__( 'Search Results', 'versalia' ) . '</li>';
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html__( 'Search Results', 'versalia' ),
+			$position
+		);
 	} elseif ( is_404() ) {
-		echo '<li aria-current="page">' . esc_html__( 'Page Not Found', 'versalia' ) . '</li>';
-	} else {
-		echo '<li aria-current="page">' . esc_html( get_the_title() ) . '</li>';
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html__( 'Page Not Found', 'versalia' ),
+			$position
+		);
+	} elseif ( is_singular() ) {
+		printf(
+			'<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page"><span itemprop="name">%s</span><meta itemprop="position" content="%d" /></li>',
+			esc_html( get_the_title() ),
+			$position
+		);
 	}
 
 	echo '</ol>';

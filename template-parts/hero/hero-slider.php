@@ -60,17 +60,10 @@ if ( ! $featured_query->have_posts() ) {
 			?>
 			<div class="slide <?php echo 0 === $slide_index ? 'active' : ''; ?>" data-slide="<?php echo esc_attr( $slide_index ); ?>">
 				<div class="slide-content">
-					<?php if ( $poetry_forms && ! is_wp_error( $poetry_forms ) ) : ?>
-						<div class="slide-form">
-							<?php
-							$forms = array();
-							foreach ( $poetry_forms as $form ) {
-								$forms[] = $form->name;
-							}
-							echo esc_html( implode( ', ', $forms ) );
-							?>
-						</div>
-					<?php endif; ?>
+					<?php
+					// Display poetry form badges
+					versalia_taxonomy_badges( 'poetry_form', get_the_ID(), 2 );
+					?>
 					
 					<h2 class="slide-title">
 						<?php the_title(); ?>

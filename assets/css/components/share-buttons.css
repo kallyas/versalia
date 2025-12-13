@@ -1,0 +1,202 @@
+/**
+ * Social Share Buttons Component
+ *
+ * Styling for social sharing buttons on single poem pages.
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+/* ====================================
+   Share Section Container
+   ==================================== */
+.social-share {
+	margin: var(--spacing-xl) 0;
+	padding: var(--spacing-lg) 0;
+	border-top: 1px solid var(--color-border);
+	border-bottom: 1px solid var(--color-border);
+}
+
+.social-share-title {
+	font-size: var(--font-size-sm);
+	font-family: var(--font-ui);
+	font-weight: var(--font-weight-semibold);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--color-text-light);
+	margin-bottom: var(--spacing-md);
+	text-align: center;
+}
+
+/* ====================================
+   Share Buttons List
+   ==================================== */
+.share-buttons {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-sm);
+	flex-wrap: wrap;
+}
+
+.share-button-item {
+	display: inline-flex;
+}
+
+/* ====================================
+   Share Button Base Styles
+   ==================================== */
+.share-button {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	padding: var(--spacing-sm) var(--spacing-md);
+	background: var(--color-background);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	color: var(--color-text);
+	text-decoration: none;
+	font-size: var(--font-size-sm);
+	font-family: var(--font-ui);
+	font-weight: var(--font-weight-medium);
+	transition: all var(--transition-fast);
+	cursor: pointer;
+}
+
+.share-button:hover,
+.share-button:focus {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-surface);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-sm);
+}
+
+.share-button:focus {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+}
+
+/* ====================================
+   Button Icon
+   ==================================== */
+.share-button .icon {
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+}
+
+/* ====================================
+   Individual Button Colors
+   ==================================== */
+.share-twitter:hover,
+.share-twitter:focus {
+	background: #1DA1F2;
+	border-color: #1DA1F2;
+}
+
+.share-facebook:hover,
+.share-facebook:focus {
+	background: #1877F2;
+	border-color: #1877F2;
+}
+
+.share-email:hover,
+.share-email:focus {
+	background: #666666;
+	border-color: #666666;
+}
+
+.share-copy:hover,
+.share-copy:focus {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+}
+
+.share-copy.copied {
+	background: #10B981;
+	border-color: #10B981;
+	color: var(--color-surface);
+}
+
+.share-print:hover,
+.share-print:focus {
+	background: var(--color-text);
+	border-color: var(--color-text);
+	color: var(--color-surface);
+}
+
+/* ====================================
+   Dark Reading Mode
+   ==================================== */
+[data-reading-mode="dark"] .social-share {
+	border-top-color: rgba(255, 255, 255, 0.1);
+	border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-reading-mode="dark"] .share-button {
+	background: var(--color-surface);
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ====================================
+   Sepia Reading Mode
+   ==================================== */
+[data-reading-mode="sepia"] .social-share {
+	border-top-color: rgba(92, 75, 55, 0.2);
+	border-bottom-color: rgba(92, 75, 55, 0.2);
+}
+
+[data-reading-mode="sepia"] .share-button {
+	background: var(--color-surface);
+	border-color: rgba(92, 75, 55, 0.3);
+}
+
+/* ====================================
+   Mobile Responsive
+   ==================================== */
+@media (max-width: 768px) {
+	.social-share {
+		margin: var(--spacing-md) 0;
+		padding: var(--spacing-md) 0;
+	}
+
+	.share-buttons {
+		gap: var(--spacing-xs);
+	}
+
+	.share-button .button-text {
+		display: none;
+	}
+
+	.share-button {
+		padding: var(--spacing-sm);
+		border-radius: var(--radius-full);
+	}
+
+	.share-button .icon {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+/* ====================================
+   Reduced Motion Support
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+	.share-button:hover,
+	.share-button:focus {
+		transform: none;
+	}
+}
+
+/* ====================================
+   Print Styles
+   ==================================== */
+@media print {
+	.social-share {
+		display: none;
+	}
+}

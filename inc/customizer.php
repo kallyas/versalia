@@ -485,6 +485,23 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 		array(
 			'default'           => true,
 			'sanitize_callback' => 'wp_validate_boolean',
+	// Badge Settings Section
+	$wp_customize->add_section(
+		'versalia_badge_settings',
+		array(
+			'title'       => __( 'Taxonomy Badges', 'versalia' ),
+			'description' => __( 'Customize the appearance of taxonomy badges.', 'versalia' ),
+			'panel'       => 'versalia_colors',
+			'priority'    => 20,
+		)
+	);
+
+	// Badge Color Scheme
+	$wp_customize->add_setting(
+		'versalia_badge_color_scheme',
+		array(
+			'default'           => 'default',
+			'sanitize_callback' => 'versalia_sanitize_badge_color_scheme',
 			'transport'         => 'refresh',
 		)
 	);
@@ -496,6 +513,17 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 			'description' => __( 'Display decorative large first letter in poems.', 'versalia' ),
 			'section'     => 'versalia_poem_display',
 			'type'        => 'checkbox',
+		'versalia_badge_color_scheme',
+		array(
+			'label'       => __( 'Badge Color Scheme', 'versalia' ),
+			'description' => __( 'Choose the color scheme for taxonomy badges displayed on poems and archives.', 'versalia' ),
+			'section'     => 'versalia_badge_settings',
+			'type'        => 'select',
+			'choices'     => array(
+				'default' => __( 'Default (Accent Colors)', 'versalia' ),
+				'vibrant' => __( 'Vibrant (Bold Colors)', 'versalia' ),
+				'minimal' => __( 'Minimal (Monochrome)', 'versalia' ),
+			),
 		)
 	);
 }
@@ -561,6 +589,17 @@ function versalia_sanitize_homepage_layout( string $input ): string {
 function versalia_sanitize_slider_transition( string $input ): string {
 	$valid = array( 'fade', 'slide' );
 	return in_array( $input, $valid, true ) ? $input : 'fade';
+}
+
+/**
+ * Sanitize badge color scheme.
+ *
+ * @param string $input Badge color scheme value.
+ * @return string Sanitized badge color scheme.
+ */
+function versalia_sanitize_badge_color_scheme( string $input ): string {
+	$valid = array( 'default', 'vibrant', 'minimal' );
+	return in_array( $input, $valid, true ) ? $input : 'default';
 }
 
 /**

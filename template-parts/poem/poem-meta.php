@@ -39,38 +39,18 @@ $collections   = get_the_terms( $post_id, 'collection' );
 	<?php if ( $show_poetry_form && $forms && ! is_wp_error( $forms ) ) : ?>
 		<div class="poem-meta-item poetry-form">
 			<span class="meta-label"><?php esc_html_e( 'Form:', 'versalia' ); ?></span>
-			<span class="meta-value">
-				<?php
-				$form_links = array();
-				foreach ( $forms as $form ) {
-					$form_links[] = sprintf(
-						'<a href="%s">%s</a>',
-						esc_url( get_term_link( $form ) ),
-						esc_html( $form->name )
-					);
-				}
-				echo wp_kses_post( implode( ', ', $form_links ) );
-				?>
-			</span>
+			<div class="meta-value">
+				<?php versalia_taxonomy_badges( 'poetry_form', $post_id ); ?>
+			</div>
 		</div>
 	<?php endif; ?>
 
 	<?php if ( $collections && ! is_wp_error( $collections ) ) : ?>
 		<div class="poem-meta-item collection">
 			<span class="meta-label"><?php esc_html_e( 'Collection:', 'versalia' ); ?></span>
-			<span class="meta-value">
-				<?php
-				$collection_links = array();
-				foreach ( $collections as $collection ) {
-					$collection_links[] = sprintf(
-						'<a href="%s">%s</a>',
-						esc_url( get_term_link( $collection ) ),
-						esc_html( $collection->name )
-					);
-				}
-				echo wp_kses_post( implode( ', ', $collection_links ) );
-				?>
-			</span>
+			<div class="meta-value">
+				<?php versalia_taxonomy_badges( 'collection', $post_id ); ?>
+			</div>
 		</div>
 	<?php endif; ?>
 
@@ -104,19 +84,9 @@ $collections   = get_the_terms( $post_id, 'collection' );
 		?>
 		<div class="poem-meta-item tags">
 			<span class="meta-label"><?php esc_html_e( 'Tags:', 'versalia' ); ?></span>
-			<span class="meta-value">
-				<?php
-				$tag_links = array();
-				foreach ( $tags as $tag ) {
-					$tag_links[] = sprintf(
-						'<a href="%s">%s</a>',
-						esc_url( get_tag_link( $tag ) ),
-						esc_html( $tag->name )
-					);
-				}
-				echo wp_kses_post( implode( ', ', $tag_links ) );
-				?>
-			</span>
+			<div class="meta-value">
+				<?php versalia_taxonomy_badges( 'post_tag', $post_id ); ?>
+			</div>
 		</div>
 	<?php endif; ?>
 </div><!-- .poem-meta -->

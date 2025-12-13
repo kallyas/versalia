@@ -141,6 +141,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	if ( get_theme_mod( 'versalia_show_author_bio', true ) ) :
 		get_template_part( 'template-parts/author/author', 'bio' );
 	endif;
+	// Display social sharing buttons
+	get_template_part( 'template-parts/social/share', 'buttons' );
 	?>
 
 	<?php if ( get_edit_post_link() ) : ?>
