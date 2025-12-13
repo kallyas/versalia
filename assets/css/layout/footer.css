@@ -1,0 +1,58 @@
+/**
+ * Footer Styles
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+.site-footer {
+	padding: var(--spacing-2xl) var(--gutter);
+	border-top: 1px solid var(--color-border);
+	background-color: var(--color-surface);
+	margin-top: auto;
+	transition: background-color var(--transition-theme);
+}
+
+.footer-widgets {
+	max-width: var(--wide-width);
+	margin: 0 auto var(--spacing-xl);
+}
+
+.site-info {
+	max-width: var(--wide-width);
+	margin: 0 auto;
+	text-align: center;
+	font-size: var(--font-size-sm);
+	color: var(--color-text-light);
+}
+
+.site-info-text {
+	margin-bottom: var(--spacing-md);
+}
+
+.site-info .sep {
+	margin: 0 var(--spacing-xs);
+}
+
+.footer-navigation ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-md);
+	flex-wrap: wrap;
+}
+
+.footer-navigation li {
+	margin: 0;
+}
+
+.footer-navigation a {
+	color: var(--color-text-light);
+	font-size: var(--font-size-sm);
+}
+
+.footer-navigation a:hover {
+	color: var(--color-accent);
+}
