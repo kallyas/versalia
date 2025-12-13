@@ -61,3 +61,4 @@ composer.lock
 # Temporary files
 *.tmp
 *.temp
+node_modules/

@@ -261,6 +261,17 @@ function versalia_enqueue_assets(): void {
 		true
 	);
 
+	// Bookmarks script (for poem pages and archives)
+	if ( is_singular( 'poem' ) || is_post_type_archive( 'poem' ) || is_front_page() || is_home() ) {
+		wp_enqueue_script(
+			'versalia-bookmarks',
+			VERSALIA_THEME_URI . '/assets/js/bookmarks.js',
+			array(),
+			VERSALIA_VERSION,
+			true
+		);
+	}
+
 	// Reading mode (only on single poems)
 	if ( is_singular( 'poem' ) ) {
 		wp_enqueue_script(

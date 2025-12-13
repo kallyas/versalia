@@ -32,6 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 	</header><!-- .poem-header -->
 
+	<div class="poem-actions">
+		<?php get_template_part( 'template-parts/buttons/bookmark-button' ); ?>
+	</div>
+
 	<?php
 	// Display dedication if available
 	$dedication = versalia_get_poem_dedication();
