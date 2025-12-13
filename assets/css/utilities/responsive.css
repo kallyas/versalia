@@ -1,0 +1,68 @@
+/**
+ * Responsive Utilities
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+/* ====================================
+   Display Utilities
+   ==================================== */
+
+.hide-mobile {
+	display: none !important;
+}
+
+@media (min-width: 768px) {
+	.hide-mobile {
+		display: block !important;
+	}
+
+	.hide-desktop {
+		display: none !important;
+	}
+}
+
+/* ====================================
+   Image Responsiveness
+   ==================================== */
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.alignleft {
+	float: left;
+	margin-right: var(--spacing-lg);
+	margin-bottom: var(--spacing-md);
+}
+
+.alignright {
+	float: right;
+	margin-left: var(--spacing-lg);
+	margin-bottom: var(--spacing-md);
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* ====================================
+   WordPress Block Alignment
+   ==================================== */
+
+.alignwide {
+	max-width: var(--wide-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.alignfull {
+	max-width: 100%;
+	margin-left: calc(-1 * var(--gutter));
+	margin-right: calc(-1 * var(--gutter));
+	width: calc(100% + (2 * var(--gutter)));
+}
