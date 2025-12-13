@@ -271,7 +271,7 @@ function versalia_enqueue_assets(): void {
 			true
 		);
 
-		// Pass WordPress data to JavaScript
+		// Localize hero slider labels for JavaScript
 		wp_localize_script(
 			'versalia-hero-slider',
 			'versaliaHeroSlider',

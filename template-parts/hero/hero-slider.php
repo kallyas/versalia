@@ -71,7 +71,7 @@ if ( ! $featured_query->have_posts() ) {
 					<p class="slide-author">
 						<?php
 						/* translators: %s: Author name */
-						printf( esc_html__( 'by %s', 'versalia' ), '<span class="author-name">' . esc_html( get_the_author() ) . '</span>' );
+						echo esc_html__( 'by', 'versalia' ) . ' <span class="author-name">' . esc_html( get_the_author() ) . '</span>';
 						?>
 					</p>
 					
