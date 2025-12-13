@@ -122,6 +122,8 @@ add_action( 'after_setup_theme', 'versalia_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function versalia_widgets_init(): void {
+	// Sidebar disabled by default
+	/*
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Sidebar', 'versalia' ),
@@ -133,6 +135,7 @@ function versalia_widgets_init(): void {
 			'after_title'   => '</h2>',
 		)
 	);
+	*/
 
 	register_sidebar(
 		array(

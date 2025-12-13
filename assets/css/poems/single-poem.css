@@ -15,7 +15,23 @@
 .poem-article {
 	max-width: var(--content-width);
 	margin: 0 auto;
-	padding: var(--spacing-xl) 0;
+	padding: 0;
+}
+
+/* ====================================
+   Featured Image
+   ==================================== */
+
+.poem-featured-image {
+	margin: 0 0 var(--spacing-2xl);
+	overflow: hidden;
+}
+
+.poem-featured-image .featured-image {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: var(--radius-md);
 }
 
 /* ====================================
@@ -24,30 +40,62 @@
 
 .poem-header {
 	text-align: center;
-	margin-bottom: var(--spacing-xl);
-	padding-bottom: var(--spacing-md);
+	margin-bottom: var(--spacing-2xl);
+	padding: var(--spacing-xl) 0 var(--spacing-lg);
 	border-bottom: 1px solid var(--color-border-light);
 }
 
 .poem-title {
-	font-size: clamp(2rem, 5vw, 4rem);
+	font-size: clamp(2rem, 5vw, 3rem);
 	line-height: var(--line-height-tight);
 	letter-spacing: var(--letter-spacing-tight);
-	margin: 0 0 var(--spacing-md);
-	font-weight: var(--font-weight-normal);
+	margin: 0 0 var(--spacing-lg);
+	font-weight: var(--font-weight-semibold);
+	color: var(--color-text);
 }
 
-.poem-byline {
+/* ====================================
+   Meta Information Bar
+   ==================================== */
+
+.poem-meta-bar {
 	font-family: var(--font-ui);
-	font-size: var(--font-size-sm);
+	font-size: var(--font-size-xs);
 	text-transform: uppercase;
-	letter-spacing: var(--letter-spacing-wider);
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--color-text-light);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: var(--spacing-xs);
+}
+
+.poem-meta-bar .meta-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.poem-meta-bar .meta-label {
 	color: var(--color-text-light);
 }
 
-.poem-byline .author-name {
-	font-weight: var(--font-weight-medium);
-	color: var(--color-text);
+.poem-meta-bar a {
+	color: var(--color-accent);
+	text-decoration: none;
+	transition: color var(--transition-fast);
+}
+
+.poem-meta-bar a:hover,
+.poem-meta-bar a:focus {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+.poem-meta-bar .meta-separator {
+	color: var(--color-border);
+	margin: 0 4px;
 }
 
 /* ====================================
@@ -126,7 +174,7 @@
 }
 
 /* ====================================
-   Drop Cap Styling
+   Drop Cap Styling (Optional)
    ==================================== */
 
 /**
@@ -134,8 +182,9 @@
  * Creates an elegant, large initial letter that spans multiple lines
  * Line-height of 0.9 ensures proper vertical alignment with the top of the text
  * Note: ::first-letter pseudo-element maintains text flow for screen readers
+ * Only applies when has-drop-cap class is present
  */
-.poem-content p:first-of-type::first-letter {
+.poem-article.has-drop-cap .poem-content p:first-of-type::first-letter {
 	float: left;
 	font-size: 4.5rem;
 	line-height: 0.9;
@@ -272,6 +321,133 @@
 }
 
 /* ====================================
+   Author Bio Box
+   ==================================== */
+
+.author-bio-box {
+	margin: var(--spacing-2xl) 0;
+	padding: var(--spacing-xl);
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+}
+
+.author-bio-header {
+	margin-bottom: var(--spacing-lg);
+	padding-bottom: var(--spacing-md);
+	border-bottom: 1px solid var(--color-border-light);
+}
+
+.author-bio-title {
+	font-family: var(--font-ui);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-semibold);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--color-text-light);
+	margin: 0;
+}
+
+.author-bio-content {
+	display: flex;
+	gap: var(--spacing-lg);
+	align-items: flex-start;
+}
+
+.author-avatar {
+	flex-shrink: 0;
+}
+
+.author-avatar img {
+	width: 100px;
+	height: 100px;
+	border-radius: var(--radius-full);
+	border: 2px solid var(--color-border);
+	display: block;
+}
+
+.author-info {
+	flex: 1;
+}
+
+.author-bio-content .author-name {
+	font-size: var(--font-size-lg);
+	font-weight: var(--font-weight-semibold);
+	margin: 0 0 var(--spacing-sm);
+	line-height: var(--line-height-tight);
+}
+
+.author-bio-content .author-name a {
+	color: var(--color-text);
+	text-decoration: none;
+	transition: color var(--transition-fast);
+}
+
+.author-bio-content .author-name a:hover,
+.author-bio-content .author-name a:focus {
+	color: var(--color-accent);
+}
+
+.author-description {
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-relaxed);
+	color: var(--color-text);
+	margin: 0 0 var(--spacing-md);
+}
+
+.author-meta {
+	margin-top: var(--spacing-md);
+}
+
+.author-meta .view-all-posts {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	font-family: var(--font-ui);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-semibold);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--color-accent);
+	text-decoration: none;
+	transition: color var(--transition-fast);
+}
+
+.author-meta .view-all-posts:hover,
+.author-meta .view-all-posts:focus {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+[data-reading-mode="dark"] .author-bio-box {
+	background: var(--color-surface);
+	border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-reading-mode="dark"] .author-bio-header {
+	border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-reading-mode="dark"] .author-avatar img {
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Sepia mode adjustments */
+[data-reading-mode="sepia"] .author-bio-box {
+	background: var(--color-surface);
+	border-color: rgba(92, 75, 55, 0.2);
+}
+
+[data-reading-mode="sepia"] .author-bio-header {
+	border-bottom-color: rgba(92, 75, 55, 0.2);
+}
+
+[data-reading-mode="sepia"] .author-avatar img {
+	border-color: rgba(92, 75, 55, 0.3);
+}
+
+/* ====================================
    Responsive Adjustments
    ==================================== */
 
@@ -312,8 +488,35 @@
 	}
 
 	/* Adjust drop cap size for mobile */
-	.poem-content p:first-of-type::first-letter {
+	.poem-article.has-drop-cap .poem-content p:first-of-type::first-letter {
 		font-size: 3.5rem;
+	}
+
+	/* Meta bar responsive */
+	.poem-meta-bar {
+		font-size: 0.65rem;
+		flex-direction: column;
+		gap: var(--spacing-xxs);
+	}
+
+	.poem-meta-bar .meta-separator {
+		display: none;
+	}
+
+	/* Author bio responsive */
+	.author-bio-box {
+		padding: var(--spacing-lg);
+	}
+
+	.author-bio-content {
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+	}
+
+	.author-avatar img {
+		width: 80px;
+		height: 80px;
 	}
 }
 

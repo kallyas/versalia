@@ -464,7 +464,7 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 	$wp_customize->add_setting(
 		'versalia_show_author_bio',
 		array(
-			'default'           => false,
+			'default'           => true,
 			'sanitize_callback' => 'wp_validate_boolean',
 			'transport'         => 'refresh',
 		)
@@ -479,6 +479,12 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 		)
 	);
 
+	// Enable Drop Cap
+	$wp_customize->add_setting(
+		'versalia_enable_drop_cap',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
 	// Badge Settings Section
 	$wp_customize->add_section(
 		'versalia_badge_settings',
@@ -501,6 +507,12 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 	);
 
 	$wp_customize->add_control(
+		'versalia_enable_drop_cap',
+		array(
+			'label'       => __( 'Enable Drop Cap', 'versalia' ),
+			'description' => __( 'Display decorative large first letter in poems.', 'versalia' ),
+			'section'     => 'versalia_poem_display',
+			'type'        => 'checkbox',
 		'versalia_badge_color_scheme',
 		array(
 			'label'       => __( 'Badge Color Scheme', 'versalia' ),

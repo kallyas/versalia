@@ -39,5 +39,5 @@ versalia_breadcrumb();
 </main><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar(); // Sidebar disabled
 get_footer();

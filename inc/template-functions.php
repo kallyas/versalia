@@ -70,6 +70,11 @@ function versalia_post_classes( array $classes, array $class, int $post_id ): ar
 				$classes[] = 'poetry-form-' . $form->slug;
 			}
 		}
+
+		// Add drop cap class if enabled
+		if ( get_theme_mod( 'versalia_enable_drop_cap', true ) ) {
+			$classes[] = 'has-drop-cap';
+		}
 	}
 
 	return $classes;
