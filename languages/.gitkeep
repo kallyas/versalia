@@ -1,0 +1,6 @@
+# Placeholder file to ensure the languages directory is tracked by git
+#
+# The versalia.pot file will be generated using:
+# wp i18n make-pot . languages/versalia.pot --domain=versalia
+#
+# Or using Poedit, Loco Translate, or other translation tools.
