@@ -1,0 +1,90 @@
+/*
+Theme Name: Versalia
+
+Adding support for languages written in a Right To Left (RTL) direction is easy -
+it's just a matter of overwriting all the horizontal positioning attributes
+of your CSS stylesheet in a separate stylesheet file named rtl.css.
+
+https://codex.wordpress.org/Right-to-Left_Language_Support
+*/
+
+/**
+ * RTL Support
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+/* ====================================
+   Typography
+   ==================================== */
+
+blockquote {
+	border-left: none;
+	border-right: 4px solid var(--color-border);
+	padding-left: 0;
+	padding-right: var(--spacing-lg);
+}
+
+.poem-epigraph {
+	text-align: left;
+}
+
+/* ====================================
+   Navigation
+   ==================================== */
+
+.primary-menu {
+	direction: rtl;
+}
+
+.nav-links {
+	direction: rtl;
+}
+
+.poem-navigation .nav-previous {
+	text-align: right;
+}
+
+.poem-navigation .nav-next {
+	text-align: left;
+}
+
+/* ====================================
+   Lists
+   ==================================== */
+
+ul,
+ol {
+	padding-left: 0;
+	padding-right: var(--spacing-lg);
+}
+
+/* ====================================
+   Images
+   ==================================== */
+
+.alignleft {
+	float: right;
+	margin-right: 0;
+	margin-left: var(--spacing-lg);
+}
+
+.alignright {
+	float: left;
+	margin-left: 0;
+	margin-right: var(--spacing-lg);
+}
+
+/* ====================================
+   Forms
+   ==================================== */
+
+.search-form {
+	direction: rtl;
+}
