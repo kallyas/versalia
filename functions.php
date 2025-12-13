@@ -74,3 +74,8 @@ require VERSALIA_THEME_DIR . '/inc/widgets.php';
  * AJAX handlers
  */
 require VERSALIA_THEME_DIR . '/inc/ajax-handlers.php';
+
+/**
+ * Related poems functionality
+ */
+require VERSALIA_THEME_DIR . '/inc/related-poems.php';

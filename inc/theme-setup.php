@@ -340,6 +340,13 @@ function versalia_enqueue_assets(): void {
 
 	// Reading mode (only on single poems)
 	if ( is_singular( 'poem' ) ) {
+		wp_enqueue_style(
+			'versalia-related-poems',
+			VERSALIA_THEME_URI . '/assets/css/poems/related-poems.css',
+			array( 'versalia-style' ),
+			VERSALIA_VERSION
+		);
+
 		wp_enqueue_script(
 			'versalia-reading-mode',
 			VERSALIA_THEME_URI . '/assets/js/reading-mode.js',
