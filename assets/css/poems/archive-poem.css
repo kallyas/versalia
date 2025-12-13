@@ -1,0 +1,166 @@
+/**
+ * Poem Archive Styles
+ *
+ * Styles for poem archives, collections, and taxonomy pages.
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+.poem-archive .page-header {
+	text-align: center;
+	margin-bottom: var(--spacing-3xl);
+	padding-bottom: var(--spacing-xl);
+	border-bottom: 1px solid var(--color-border-light);
+}
+
+.poem-archive .page-title {
+	font-size: var(--font-size-3xl);
+	margin-bottom: var(--spacing-md);
+}
+
+.poem-archive .archive-description {
+	color: var(--color-text-light);
+	font-size: var(--font-size-md);
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+/* ====================================
+   List View (Default)
+   ==================================== */
+
+.poem-archive-container.view-list .poem-excerpt {
+	padding: var(--spacing-xl) 0;
+	border-bottom: 1px solid var(--color-border-light);
+}
+
+.poem-archive-container.view-list .poem-excerpt:last-child {
+	border-bottom: none;
+}
+
+.poem-excerpt .entry-title {
+	font-size: var(--font-size-2xl);
+	margin-bottom: var(--spacing-sm);
+}
+
+.poem-excerpt .entry-title a {
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+.poem-excerpt .entry-title a:hover {
+	color: var(--color-accent);
+}
+
+.poem-excerpt .entry-meta {
+	font-family: var(--font-ui);
+	font-size: var(--font-size-xs);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wider);
+	color: var(--color-text-light);
+	margin-bottom: var(--spacing-md);
+	display: flex;
+	gap: var(--spacing-md);
+}
+
+.poem-excerpt .entry-summary {
+	font-size: var(--font-size-md);
+	line-height: var(--line-height-relaxed);
+	margin-bottom: var(--spacing-md);
+}
+
+.poem-excerpt .read-more {
+	font-family: var(--font-ui);
+	font-size: var(--font-size-sm);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--color-accent);
+	text-decoration: none;
+}
+
+.poem-excerpt .read-more:hover {
+	text-decoration: underline;
+}
+
+/* ====================================
+   Grid View
+   ==================================== */
+
+.poem-archive-container.view-grid .poem-excerpt {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	padding: var(--spacing-lg);
+	transition: all var(--transition-fast);
+}
+
+.poem-archive-container.view-grid .poem-excerpt:hover {
+	border-color: var(--color-accent);
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
+}
+
+.poem-archive-container.view-grid .entry-title {
+	font-size: var(--font-size-xl);
+	margin-bottom: var(--spacing-sm);
+}
+
+.poem-archive-container.view-grid .entry-meta {
+	margin-bottom: var(--spacing-sm);
+}
+
+.poem-archive-container.view-grid .entry-summary {
+	font-size: var(--font-size-sm);
+	margin-bottom: var(--spacing-md);
+}
+
+/* ====================================
+   Pagination
+   ==================================== */
+
+.pagination,
+.posts-pagination {
+	margin-top: var(--spacing-3xl);
+	padding-top: var(--spacing-xl);
+	border-top: 1px solid var(--color-border);
+}
+
+.nav-links {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--spacing-md);
+	font-family: var(--font-ui);
+}
+
+.nav-links a,
+.nav-links .page-numbers {
+	padding: var(--spacing-sm) var(--spacing-md);
+	color: var(--color-text);
+	text-decoration: none;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	transition: all var(--transition-fast);
+}
+
+.nav-links a:hover {
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+.nav-links .current {
+	background-color: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-background);
+}
+
+@media (max-width: 768px) {
+	.poem-archive .page-title {
+		font-size: var(--font-size-2xl);
+	}
+
+	.poem-excerpt .entry-title {
+		font-size: var(--font-size-xl);
+	}
+}
