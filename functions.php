@@ -76,6 +76,11 @@ require VERSALIA_THEME_DIR . '/inc/widgets.php';
 require VERSALIA_THEME_DIR . '/inc/ajax-handlers.php';
 
 /**
+ * Social media meta tags
+ */
+require VERSALIA_THEME_DIR . '/inc/social-meta.php';
+
+/**
  * Related poems functionality
  */
 require VERSALIA_THEME_DIR . '/inc/related-poems.php';

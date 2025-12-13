@@ -341,10 +341,20 @@ function versalia_enqueue_assets(): void {
 	// Reading mode (only on single poems)
 	if ( is_singular( 'poem' ) ) {
 		wp_enqueue_style(
+			'versalia-share-buttons',
+			VERSALIA_THEME_URI . '/assets/css/components/share-buttons.css',
 			'versalia-related-poems',
 			VERSALIA_THEME_URI . '/assets/css/poems/related-poems.css',
 			array( 'versalia-style' ),
 			VERSALIA_VERSION
+		);
+
+		wp_enqueue_script(
+			'versalia-share',
+			VERSALIA_THEME_URI . '/assets/js/share.js',
+			array(),
+			VERSALIA_VERSION,
+			true
 		);
 
 		wp_enqueue_script(

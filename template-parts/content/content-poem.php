@@ -92,6 +92,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	versalia_poem_meta();
 	?>
 
+	<?php
+	// Display social sharing buttons
+	get_template_part( 'template-parts/social/share', 'buttons' );
+	?>
+
 	<?php if ( get_edit_post_link() ) : ?>
 		<footer class="entry-footer">
 			<?php
