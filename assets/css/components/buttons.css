@@ -133,6 +133,52 @@ button:disabled,
 	}
 }
 
+/* ====================================
+   Load More Button
+   ==================================== */
+.load-more-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: var(--spacing-3xl) 0;
+	padding: var(--spacing-lg) 0;
+}
+
+.load-more-button {
+	min-width: 200px;
+	position: relative;
+}
+
+.load-more-button.is-loading {
+	opacity: 0.7;
+	cursor: wait;
+}
+
+.load-more-button.is-loading::after {
+	content: "";
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin-left: var(--spacing-xs);
+	border: 2px solid currentColor;
+	border-right-color: transparent;
+	border-radius: 50%;
+	animation: load-more-spin 0.6s linear infinite;
+}
+
+@keyframes load-more-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.load-more-button.is-loading::after {
+		animation: none;
+		border-right-color: currentColor;
+	}
+}
+
 /* Screen reader text */
 .screen-reader-text {
 	position: absolute;

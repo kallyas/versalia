@@ -177,6 +177,19 @@
 	}
 }
 
+/* ====================================
+   AJAX Load More Content Transitions
+   ==================================== */
+.poem-archive-container .poem-excerpt {
+	transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.poem-archive-container .poem-excerpt {
+		transition: none;
+	}
+}
+
 @media (max-width: 768px) {
 	.poem-archive .page-title {
 		font-size: var(--font-size-2xl);

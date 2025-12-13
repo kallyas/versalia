@@ -170,12 +170,20 @@
 				return;
 			}
 
+			// Check if already initialized
+			if (button.dataset.bookmarkInitialized === 'true') {
+				return;
+			}
+
 			// Set initial state
 			const bookmarked = isBookmarked(poemId);
 			updateButtonUI(button, bookmarked);
 
 			// Add click handler
 			button.addEventListener('click', handleBookmarkClick);
+
+			// Mark as initialized
+			button.dataset.bookmarkInitialized = 'true';
 		});
 	}
 
@@ -185,5 +193,8 @@
 	} else {
 		initBookmarks();
 	}
+
+	// Re-initialize when new content is loaded (for AJAX pagination)
+	document.addEventListener('versalia:contentLoaded', initBookmarks);
 
 })();

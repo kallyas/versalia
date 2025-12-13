@@ -43,13 +43,36 @@ get_header();
 		</div><!-- .poem-archive-container -->
 
 		<?php
-		the_posts_pagination(
-			array(
-				'mid_size'  => 2,
-				'prev_text' => __( '← Previous', 'versalia' ),
-				'next_text' => __( 'Next →', 'versalia' ),
-			)
-		);
+		// Load More button for AJAX pagination
+		global $wp_query;
+		if ( $wp_query->max_num_pages > 1 ) :
+			$taxonomy = '';
+			$term_id = 0;
+			
+			// Get taxonomy and term if on taxonomy archive
+			if ( is_tax() ) {
+				$queried_object = get_queried_object();
+				if ( $queried_object ) {
+					$taxonomy = $queried_object->taxonomy;
+					$term_id = $queried_object->term_id;
+				}
+			}
+			?>
+			<div class="load-more-wrapper">
+				<button class="load-more-button button" 
+						data-page="1" 
+						data-max-pages="<?php echo esc_attr( $wp_query->max_num_pages ); ?>"
+						data-post-type="poem"
+						data-taxonomy="<?php echo esc_attr( $taxonomy ); ?>"
+						data-term-id="<?php echo esc_attr( $term_id ); ?>"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( VERSALIA_LOAD_MORE_NONCE_ACTION ) ); ?>"
+						data-loading-text="<?php esc_attr_e( 'Loading...', 'versalia' ); ?>">
+					<?php esc_html_e( 'Load More Poems', 'versalia' ); ?>
+				</button>
+			</div>
+		<?php endif; ?>
+
+	<?php
 
 	else :
 
