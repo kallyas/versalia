@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Define constants for AJAX actions
+define( 'VERSALIA_LOAD_MORE_ACTION', 'versalia_load_more' );
+
 /**
  * Handle AJAX request to load more poems.
  *
@@ -21,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function versalia_load_more_poems(): void {
 	// Verify nonce for security
-	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'versalia_load_more' ) ) {
+	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), VERSALIA_LOAD_MORE_ACTION ) ) {
 		wp_send_json_error( array( 'message' => __( 'Security check failed', 'versalia' ) ) );
 		return;
 	}

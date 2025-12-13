@@ -197,7 +197,4 @@
 	// Re-initialize when new content is loaded (for AJAX pagination)
 	document.addEventListener('versalia:contentLoaded', initBookmarks);
 
-	// Export for use by other scripts
-	window.initBookmarks = initBookmarks;
-
 })();

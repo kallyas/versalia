@@ -176,7 +176,12 @@
 			button.classList.remove('is-loading');
 			isLoading = false;
 			
-			announceToScreenReader('Error loading more poems. Please try again.');
+			// Provide more specific error message
+			const errorMessage = error instanceof TypeError 
+				? 'Network error. Please check your connection and try again.'
+				: 'Error loading more poems. Please try again.';
+			
+			announceToScreenReader(errorMessage);
 		}
 	}
 
