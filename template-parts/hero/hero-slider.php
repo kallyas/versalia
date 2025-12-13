@@ -24,8 +24,13 @@ if ( ! $slider_enabled ) {
 $featured_args = array(
 	'post_type'      => 'poem',
 	'posts_per_page' => $posts_count,
-	'meta_key'       => '_featured_poem',
-	'meta_value'     => '1',
+	'meta_query'     => array(
+		array(
+			'key'     => '_featured_poem',
+			'value'   => '1',
+			'compare' => '=',
+		),
+	),
 );
 
 $featured_query = new WP_Query( $featured_args );
