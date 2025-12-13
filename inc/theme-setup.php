@@ -243,6 +243,14 @@ function versalia_enqueue_assets(): void {
 		);
 	}
 
+	// Taxonomy badges component
+	wp_enqueue_style(
+		'versalia-badges',
+		VERSALIA_THEME_URI . '/assets/css/components/badges.css',
+		array( 'versalia-style' ),
+		VERSALIA_VERSION
+	);
+
 	// Navigation script
 	wp_enqueue_script(
 		'versalia-navigation',

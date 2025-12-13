@@ -1,0 +1,238 @@
+/**
+ * Taxonomy Badges Component
+ *
+ * Styled pill-shaped badges for poetry forms, collections, and tags.
+ * Works across all reading modes with appropriate color schemes.
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+/* ====================================
+   Badge Container
+   ==================================== */
+.taxonomy-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-xs);
+	margin-bottom: var(--spacing-sm);
+}
+
+/* ====================================
+   Base Badge Styles
+   ==================================== */
+.taxonomy-badge {
+	display: inline-block;
+	padding: 4px 12px;
+	font-size: var(--font-size-xs);
+	font-family: var(--font-ui);
+	font-weight: var(--font-weight-semibold);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	text-decoration: none;
+	border-radius: var(--radius-full);
+	transition: all var(--transition-fast);
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.taxonomy-badge:focus {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+}
+
+/* ====================================
+   Poetry Form Badges
+   ==================================== */
+.taxonomy-poetry_form .taxonomy-badge {
+	background: var(--color-accent);
+	color: var(--color-surface);
+}
+
+.taxonomy-poetry_form .taxonomy-badge:hover,
+.taxonomy-poetry_form .taxonomy-badge:focus {
+	background: color-mix(in srgb, var(--color-accent) 80%, black);
+	transform: translateY(-1px);
+}
+
+/* ====================================
+   Collection Badges
+   ==================================== */
+.taxonomy-collection .taxonomy-badge {
+	background: var(--color-background);
+	color: var(--color-text);
+	border: 1px solid var(--color-border);
+}
+
+.taxonomy-collection .taxonomy-badge:hover,
+.taxonomy-collection .taxonomy-badge:focus {
+	background: var(--color-accent);
+	color: var(--color-surface);
+	border-color: var(--color-accent);
+	transform: translateY(-1px);
+}
+
+/* ====================================
+   Tag Badges
+   ==================================== */
+.taxonomy-post_tag .taxonomy-badge {
+	background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+	color: var(--color-accent);
+}
+
+.taxonomy-post_tag .taxonomy-badge:hover,
+.taxonomy-post_tag .taxonomy-badge:focus {
+	background: var(--color-accent);
+	color: var(--color-surface);
+	transform: translateY(-1px);
+}
+
+/* ====================================
+   Dark Reading Mode Adjustments
+   ==================================== */
+[data-reading-mode="dark"] .taxonomy-collection .taxonomy-badge {
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-reading-mode="dark"] .taxonomy-poetry_form .taxonomy-badge:hover,
+[data-reading-mode="dark"] .taxonomy-poetry_form .taxonomy-badge:focus {
+	background: color-mix(in srgb, var(--color-accent) 120%, white);
+}
+
+/* ====================================
+   Sepia Reading Mode Adjustments
+   ==================================== */
+[data-reading-mode="sepia"] .taxonomy-collection .taxonomy-badge {
+	border-color: rgba(92, 75, 55, 0.3);
+}
+
+/* ====================================
+   Featured Section Overlay Badges
+   ==================================== */
+.featured-poem-card .taxonomy-badges {
+	position: absolute;
+	top: var(--spacing-sm);
+	left: var(--spacing-sm);
+	z-index: var(--z-base);
+	margin-bottom: 0;
+}
+
+.featured-poem-card .taxonomy-badge {
+	background: rgba(255, 255, 255, 0.95);
+	color: var(--color-text);
+	box-shadow: var(--shadow-sm);
+}
+
+.featured-poem-card .taxonomy-badge:hover,
+.featured-poem-card .taxonomy-badge:focus {
+	background: var(--color-accent);
+	color: var(--color-surface);
+	box-shadow: var(--shadow-md);
+}
+
+/* Dark mode adjustments for featured cards */
+[data-reading-mode="dark"] .featured-poem-card .taxonomy-badge {
+	background: rgba(44, 44, 44, 0.95);
+	color: var(--color-text);
+}
+
+[data-reading-mode="sepia"] .featured-poem-card .taxonomy-badge {
+	background: rgba(249, 243, 229, 0.95);
+	color: var(--color-text);
+}
+
+/* ====================================
+   Mobile Responsive
+   ==================================== */
+@media (max-width: 768px) {
+	.taxonomy-badge {
+		font-size: 0.65rem;
+		padding: 3px 10px;
+	}
+}
+
+/* ====================================
+   Reduced Motion Support
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+	.taxonomy-badge:hover,
+	.taxonomy-badge:focus {
+		transform: none;
+	}
+}
+
+/* ====================================
+   Alternative Color Schemes
+   ==================================== */
+
+/* Vibrant Color Scheme */
+.badge-scheme-vibrant .taxonomy-poetry_form .taxonomy-badge {
+	background: #E63946;
+}
+
+.badge-scheme-vibrant .taxonomy-collection .taxonomy-badge {
+	background: var(--color-background);
+	color: #457B9D;
+	border-color: #457B9D;
+}
+
+.badge-scheme-vibrant .taxonomy-collection .taxonomy-badge:hover,
+.badge-scheme-vibrant .taxonomy-collection .taxonomy-badge:focus {
+	background: #457B9D;
+	color: var(--color-surface);
+}
+
+.badge-scheme-vibrant .taxonomy-post_tag .taxonomy-badge {
+	background: color-mix(in srgb, #2A9D8F 20%, transparent);
+	color: #2A9D8F;
+}
+
+.badge-scheme-vibrant .taxonomy-post_tag .taxonomy-badge:hover,
+.badge-scheme-vibrant .taxonomy-post_tag .taxonomy-badge:focus {
+	background: #2A9D8F;
+	color: var(--color-surface);
+}
+
+/* Minimal Color Scheme */
+.badge-scheme-minimal .taxonomy-poetry_form .taxonomy-badge {
+	background: var(--color-text);
+	color: var(--color-surface);
+}
+
+.badge-scheme-minimal .taxonomy-poetry_form .taxonomy-badge:hover,
+.badge-scheme-minimal .taxonomy-poetry_form .taxonomy-badge:focus {
+	background: color-mix(in srgb, var(--color-text) 80%, black);
+}
+
+.badge-scheme-minimal .taxonomy-collection .taxonomy-badge {
+	background: var(--color-background);
+	color: var(--color-text-light);
+	border-color: var(--color-border);
+}
+
+.badge-scheme-minimal .taxonomy-collection .taxonomy-badge:hover,
+.badge-scheme-minimal .taxonomy-collection .taxonomy-badge:focus {
+	background: var(--color-text-light);
+	color: var(--color-surface);
+	border-color: var(--color-text-light);
+}
+
+.badge-scheme-minimal .taxonomy-post_tag .taxonomy-badge {
+	background: var(--color-border);
+	color: var(--color-text);
+}
+
+.badge-scheme-minimal .taxonomy-post_tag .taxonomy-badge:hover,
+.badge-scheme-minimal .taxonomy-post_tag .taxonomy-badge:focus {
+	background: var(--color-text);
+	color: var(--color-surface);
+}
+
+/* ====================================
+   Print Styles
+   ==================================== */
+@media print {
+	.taxonomy-badges {
+		display: none;
+	}
+}

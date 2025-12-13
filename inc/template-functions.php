@@ -41,6 +41,12 @@ function versalia_body_classes( array $classes ): array {
 	// Add reading mode class (from localStorage, default to light)
 	$classes[] = 'reading-mode-light';
 
+	// Add badge color scheme class
+	$badge_scheme = get_theme_mod( 'versalia_badge_color_scheme', 'default' );
+	if ( 'default' !== $badge_scheme ) {
+		$classes[] = 'badge-scheme-' . $badge_scheme;
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'versalia_body_classes' );
