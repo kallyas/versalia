@@ -7,10 +7,14 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'featured-poem' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'featured-poem-card featured-poem' ); ?>>
 
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="post-thumbnail">
+			<?php
+			// Display poetry form badges overlaid on thumbnail
+			versalia_taxonomy_badges( 'poetry_form', get_the_ID(), 2 );
+			?>
 			<a href="<?php the_permalink(); ?>">
 				<?php the_post_thumbnail( 'large' ); ?>
 			</a>
@@ -19,32 +23,11 @@
 
 	<header class="entry-header">
 		<?php
-		// Display poetry form
-		$poetry_forms = get_the_terms( get_the_ID(), 'poetry_form' );
-		if ( $poetry_forms && ! is_wp_error( $poetry_forms ) ) :
-			?>
-			<div class="entry-meta">
-				<span class="poetry-form">
-					<?php
-					$forms = array();
-					foreach ( $poetry_forms as $form ) {
-						$forms[] = $form->name;
-					}
-					echo esc_html( implode( ', ', $forms ) );
-					?>
-				</span>
-			</div>
-			<?php
-		endif;
-
 		the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		?>
 
 		<div class="entry-meta">
-			<?php
-			versalia_posted_on();
-			versalia_posted_by();
-			?>
+			<span class="author-name"><?php echo esc_html( get_the_author() ); ?></span>
 		</div>
 	</header>
 

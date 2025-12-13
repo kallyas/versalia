@@ -243,6 +243,23 @@ function versalia_enqueue_assets(): void {
 		);
 	}
 
+	// Breadcrumb component
+	if ( ! is_front_page() ) {
+		wp_enqueue_style(
+			'versalia-breadcrumbs',
+			VERSALIA_THEME_URI . '/assets/css/components/breadcrumbs.css',
+			array( 'versalia-style' ),
+			VERSALIA_VERSION
+		);
+	}
+	// Taxonomy badges component
+	wp_enqueue_style(
+		'versalia-badges',
+		VERSALIA_THEME_URI . '/assets/css/components/badges.css',
+		array( 'versalia-style' ),
+		VERSALIA_VERSION
+	);
+
 	// Navigation script
 	wp_enqueue_script(
 		'versalia-navigation',
@@ -326,6 +343,8 @@ function versalia_enqueue_assets(): void {
 		wp_enqueue_style(
 			'versalia-share-buttons',
 			VERSALIA_THEME_URI . '/assets/css/components/share-buttons.css',
+			'versalia-related-poems',
+			VERSALIA_THEME_URI . '/assets/css/poems/related-poems.css',
 			array( 'versalia-style' ),
 			VERSALIA_VERSION
 		);

@@ -1,0 +1,241 @@
+/**
+ * Related Poems Component
+ *
+ * Displays related poems at the bottom of single poem pages to encourage
+ * further reading and increase engagement.
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+/* ====================================
+   Related Poems Container
+   ==================================== */
+.related-poems {
+	margin-top: var(--spacing-3xl);
+	padding-top: var(--spacing-2xl);
+	border-top: 1px solid var(--color-border);
+	max-width: var(--wide-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* ====================================
+   Section Title
+   ==================================== */
+.related-poems-title {
+	font-size: var(--font-size-2xl);
+	font-family: var(--font-heading);
+	font-weight: var(--font-weight-semibold);
+	text-align: center;
+	margin-bottom: var(--spacing-xl);
+	color: var(--color-text);
+}
+
+/* ====================================
+   Grid Layout
+   ==================================== */
+.related-poems-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: var(--spacing-lg);
+}
+
+/* ====================================
+   Related Poem Card
+   ==================================== */
+.related-poem-card {
+	padding: var(--spacing-lg);
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	transition: all var(--transition-base);
+	display: flex;
+	flex-direction: column;
+}
+
+.related-poem-card:hover,
+.related-poem-card:focus-within {
+	border-color: var(--color-accent);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
+}
+
+/* ====================================
+   Card Header
+   ==================================== */
+.related-poem-card .poem-card-header {
+	margin-bottom: var(--spacing-md);
+}
+
+.related-poem-card .poem-title {
+	font-size: var(--font-size-lg);
+	font-family: var(--font-heading);
+	font-weight: var(--font-weight-semibold);
+	margin-bottom: var(--spacing-sm);
+	line-height: var(--line-height-tight);
+}
+
+.related-poem-card .poem-title a {
+	text-decoration: none;
+	color: var(--color-text);
+	transition: color var(--transition-fast);
+}
+
+.related-poem-card .poem-title a:hover,
+.related-poem-card .poem-title a:focus {
+	color: var(--color-accent);
+}
+
+/* ====================================
+   Card Meta
+   ==================================== */
+.related-poem-card .poem-meta {
+	font-size: var(--font-size-xs);
+	font-family: var(--font-ui);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--color-text-light);
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	flex-wrap: wrap;
+}
+
+.related-poem-card .poem-author {
+	display: inline-flex;
+	align-items: center;
+}
+
+.related-poem-card .author-name {
+	color: var(--color-text);
+}
+
+.related-poem-card .poem-separator {
+	color: var(--color-border);
+}
+
+.related-poem-card .poem-form {
+	color: var(--color-accent);
+}
+
+/* ====================================
+   Card Excerpt
+   ==================================== */
+.related-poem-card .poem-excerpt {
+	font-size: var(--font-size-sm);
+	line-height: var(--line-height-relaxed);
+	color: var(--color-text-light);
+	margin-bottom: var(--spacing-md);
+	flex-grow: 1;
+}
+
+.related-poem-card .poem-excerpt p {
+	margin: 0;
+}
+
+/* ====================================
+   Card Footer
+   ==================================== */
+.related-poem-card .poem-card-footer {
+	margin-top: auto;
+}
+
+.related-poem-card .read-more {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	color: var(--color-accent);
+	text-decoration: none;
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-semibold);
+	font-family: var(--font-ui);
+	transition: color var(--transition-fast);
+}
+
+.related-poem-card .read-more:hover,
+.related-poem-card .read-more:focus {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+/* ====================================
+   Dark Reading Mode
+   ==================================== */
+[data-reading-mode="dark"] .related-poems {
+	border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-reading-mode="dark"] .related-poem-card {
+	background: var(--color-surface);
+	border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-reading-mode="dark"] .related-poem-card:hover,
+[data-reading-mode="dark"] .related-poem-card:focus-within {
+	border-color: var(--color-accent);
+}
+
+/* ====================================
+   Sepia Reading Mode
+   ==================================== */
+[data-reading-mode="sepia"] .related-poems {
+	border-top-color: rgba(92, 75, 55, 0.2);
+}
+
+[data-reading-mode="sepia"] .related-poem-card {
+	background: var(--color-surface);
+	border-color: rgba(92, 75, 55, 0.2);
+}
+
+[data-reading-mode="sepia"] .related-poem-card:hover,
+[data-reading-mode="sepia"] .related-poem-card:focus-within {
+	border-color: var(--color-accent);
+}
+
+/* ====================================
+   Mobile Responsive
+   ==================================== */
+@media (max-width: 768px) {
+	.related-poems {
+		margin-top: var(--spacing-2xl);
+		padding-top: var(--spacing-xl);
+	}
+
+	.related-poems-title {
+		font-size: var(--font-size-xl);
+		margin-bottom: var(--spacing-md);
+	}
+
+	.related-poems-grid {
+		grid-template-columns: 1fr;
+		gap: var(--spacing-md);
+	}
+
+	.related-poem-card {
+		padding: var(--spacing-md);
+	}
+
+	.related-poem-card .poem-title {
+		font-size: var(--font-size-base);
+	}
+}
+
+/* ====================================
+   Reduced Motion Support
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+	.related-poem-card:hover,
+	.related-poem-card:focus-within {
+		transform: none;
+	}
+}
+
+/* ====================================
+   Print Styles
+   ==================================== */
+@media print {
+	.related-poems {
+		display: none;
+	}
+}
