@@ -270,6 +270,16 @@ function versalia_enqueue_assets(): void {
 			VERSALIA_VERSION,
 			true
 		);
+
+		// Pass WordPress data to JavaScript
+		wp_localize_script(
+			'versalia-hero-slider',
+			'versaliaHeroSlider',
+			array(
+				'pauseLabel' => __( 'Pause slider', 'versalia' ),
+				'playLabel'  => __( 'Play slider', 'versalia' ),
+			)
+		);
 	}
 
 	// Bookmarks script (for poem pages and archives)

@@ -200,16 +200,19 @@ class HeroSlider {
 		const pauseIcon = this.pauseButton.querySelector('.pause-icon');
 		const playIcon = this.pauseButton.querySelector('.play-icon');
 
+		// Get localized labels from WordPress
+		const labels = window.versaliaHeroSlider || { pauseLabel: 'Pause slider', playLabel: 'Play slider' };
+
 		if (this.isPaused) {
 			this.stopAutoAdvance();
 			this.pauseButton.setAttribute('aria-pressed', 'true');
-			this.pauseButton.setAttribute('aria-label', 'Play slider');
+			this.pauseButton.setAttribute('aria-label', labels.playLabel);
 			pauseIcon.style.display = 'none';
 			playIcon.style.display = 'inline';
 		} else {
 			this.startAutoAdvance();
 			this.pauseButton.setAttribute('aria-pressed', 'false');
-			this.pauseButton.setAttribute('aria-label', 'Pause slider');
+			this.pauseButton.setAttribute('aria-label', labels.pauseLabel);
 			pauseIcon.style.display = 'inline';
 			playIcon.style.display = 'none';
 		}

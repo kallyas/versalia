@@ -77,12 +77,10 @@ if ( ! $featured_query->have_posts() ) {
 					
 					<div class="slide-excerpt">
 						<?php
-						// Get the first few lines of the poem
+						// Get excerpt from poem content
 						$content = get_the_content();
 						$content = wp_strip_all_tags( $content );
-						$lines   = explode( "\n", $content );
-						$excerpt = implode( "\n", array_slice( $lines, 0, 3 ) );
-						echo '<p>' . esc_html( wp_trim_words( $excerpt, 20, '...' ) ) . '</p>';
+						echo '<p>' . esc_html( wp_trim_words( $content, 20, '...' ) ) . '</p>';
 						?>
 					</div>
 					
