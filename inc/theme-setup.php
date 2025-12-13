@@ -261,6 +261,34 @@ function versalia_enqueue_assets(): void {
 		true
 	);
 
+	// Hero Slider script and styles (for front page only)
+	if ( is_front_page() || is_home() ) {
+		wp_enqueue_style(
+			'versalia-hero-slider',
+			VERSALIA_THEME_URI . '/assets/css/components/hero-slider.css',
+			array( 'versalia-style' ),
+			VERSALIA_VERSION
+		);
+
+		wp_enqueue_script(
+			'versalia-hero-slider',
+			VERSALIA_THEME_URI . '/assets/js/hero-slider.js',
+			array(),
+			VERSALIA_VERSION,
+			true
+		);
+
+		// Localize hero slider labels for JavaScript
+		wp_localize_script(
+			'versalia-hero-slider',
+			'versaliaHeroSlider',
+			array(
+				'pauseLabel' => __( 'Pause slider', 'versalia' ),
+				'playLabel'  => __( 'Play slider', 'versalia' ),
+			)
+		);
+	}
+
 	// Bookmarks script (for poem pages and archives)
 	if ( is_singular( 'poem' ) || is_post_type_archive( 'poem' ) || is_front_page() || is_home() || is_tax( array( 'collection', 'poetry_form' ) ) ) {
 		wp_enqueue_script(

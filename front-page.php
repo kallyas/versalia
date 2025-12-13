@@ -14,39 +14,8 @@ get_header();
 	<main id="primary" class="site-main">
 
 		<?php
-		// Featured Section
-		if ( is_active_sidebar( 'homepage-featured' ) ) :
-			?>
-			<div class="homepage-featured-section">
-				<?php dynamic_sidebar( 'homepage-featured' ); ?>
-			</div>
-			<?php
-		else :
-			// Default featured content if no widgets
-			$featured_args = array(
-				'post_type'      => 'poem',
-				'posts_per_page' => 3,
-				'meta_key'       => '_featured_poem',
-				'meta_value'     => '1',
-			);
-			$featured_query = new WP_Query( $featured_args );
-
-			if ( $featured_query->have_posts() ) :
-				?>
-				<div class="homepage-featured-section">
-					<div class="featured-poems">
-						<?php
-						while ( $featured_query->have_posts() ) :
-							$featured_query->the_post();
-							get_template_part( 'template-parts/content/content', 'featured' );
-						endwhile;
-						wp_reset_postdata();
-						?>
-					</div>
-				</div>
-				<?php
-			endif;
-		endif;
+		// Hero Slider Section (replaces old featured section when enabled)
+		get_template_part( 'template-parts/hero/hero-slider' );
 		?>
 
 		<?php

@@ -12,6 +12,7 @@ Versalia prioritizes reading experience, preserving the intentional formatting o
 
 - **Custom Post Type**: Dedicated "Poem" content type with specialized fields
 - **Custom Taxonomies**: Collections and Poetry Forms for organization
+- **Hero Slider**: Engaging carousel/slider for featured poems on the homepage
 - **Typography-First Design**: 4 elegant font pairing presets optimized for readability
 - **Reading Modes**: Light, Dark, and Sepia modes with localStorage persistence
 - **Keyboard Navigation**: Navigate between poems with keyboard shortcuts
@@ -160,6 +161,22 @@ Access via **Appearance > Customize**:
 - **Typography**: Select from 4 font pairing presets
 - **Colors**: Customize colors for each reading mode
 - **Layout**: Configure archive view style and layout options
+- **Hero Slider**: Configure the homepage featured poems slider
+  - Enable/disable the slider
+  - Auto-advance toggle and speed (2000-10000ms)
+  - Number of featured poems to show (1-10)
+  - Transition effect (fade/slide)
+
+### Featured Poems
+
+To feature poems in the hero slider:
+
+1. Edit a poem in **Poems > All Poems**
+2. In the Custom Fields panel, add a field:
+   - Name: `_featured_poem`
+   - Value: `1`
+3. Update the poem
+4. The poem will appear in the homepage hero slider (if enabled)
 
 ## Browser Support
 

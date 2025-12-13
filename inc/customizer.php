@@ -147,6 +147,130 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 		)
 	);
 
+	// Hero Slider Section
+	$wp_customize->add_section(
+		'versalia_hero_slider',
+		array(
+			'title'       => __( 'Hero Slider', 'versalia' ),
+			'description' => __( 'Configure the hero slider/carousel for featured poems.', 'versalia' ),
+			'panel'       => 'versalia_layout',
+			'priority'    => 3,
+		)
+	);
+
+	// Enable Hero Slider
+	$wp_customize->add_setting(
+		'hero_slider_enabled',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'hero_slider_enabled',
+		array(
+			'label'       => __( 'Enable Hero Slider', 'versalia' ),
+			'description' => __( 'Show a hero slider/carousel for featured poems on the homepage.', 'versalia' ),
+			'section'     => 'versalia_hero_slider',
+			'type'        => 'checkbox',
+		)
+	);
+
+	// Auto-Advance
+	$wp_customize->add_setting(
+		'hero_slider_auto_advance',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'hero_slider_auto_advance',
+		array(
+			'label'       => __( 'Auto-Advance Slides', 'versalia' ),
+			'description' => __( 'Automatically advance to the next slide.', 'versalia' ),
+			'section'     => 'versalia_hero_slider',
+			'type'        => 'checkbox',
+		)
+	);
+
+	// Advance Speed
+	$wp_customize->add_setting(
+		'hero_slider_speed',
+		array(
+			'default'           => 5000,
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'hero_slider_speed',
+		array(
+			'label'       => __( 'Auto-Advance Speed (ms)', 'versalia' ),
+			'description' => __( 'Time in milliseconds between slide transitions.', 'versalia' ),
+			'section'     => 'versalia_hero_slider',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 2000,
+				'max'  => 10000,
+				'step' => 500,
+			),
+		)
+	);
+
+	// Number of Featured Poems
+	$wp_customize->add_setting(
+		'hero_slider_posts_count',
+		array(
+			'default'           => 5,
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'hero_slider_posts_count',
+		array(
+			'label'       => __( 'Number of Featured Poems', 'versalia' ),
+			'description' => __( 'How many featured poems to show in the slider.', 'versalia' ),
+			'section'     => 'versalia_hero_slider',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min'  => 1,
+				'max'  => 10,
+				'step' => 1,
+			),
+		)
+	);
+
+	// Transition Effect
+	$wp_customize->add_setting(
+		'hero_slider_transition',
+		array(
+			'default'           => 'fade',
+			'sanitize_callback' => 'versalia_sanitize_slider_transition',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'hero_slider_transition',
+		array(
+			'label'   => __( 'Transition Effect', 'versalia' ),
+			'section' => 'versalia_hero_slider',
+			'type'    => 'select',
+			'choices' => array(
+				'fade'  => __( 'Fade', 'versalia' ),
+				'slide' => __( 'Slide', 'versalia' ),
+			),
+		)
+	);
+
 	// Homepage Layout Style
 	$wp_customize->add_setting(
 		'homepage_layout',
@@ -406,6 +530,17 @@ function versalia_sanitize_archive_view( string $input ): string {
 function versalia_sanitize_homepage_layout( string $input ): string {
 	$valid = array( 'layout-a', 'layout-b', 'layout-c' );
 	return in_array( $input, $valid, true ) ? $input : 'layout-a';
+}
+
+/**
+ * Sanitize slider transition.
+ *
+ * @param string $input Slider transition value.
+ * @return string Sanitized slider transition.
+ */
+function versalia_sanitize_slider_transition( string $input ): string {
+	$valid = array( 'fade', 'slide' );
+	return in_array( $input, $valid, true ) ? $input : 'fade';
 }
 
 /**
