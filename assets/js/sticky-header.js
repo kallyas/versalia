@@ -17,7 +17,10 @@
 	}
 
 	let scrollTimeout;
+	// Threshold in pixels before adding shadow (enough to indicate scrolling)
 	const SCROLL_THRESHOLD = 10;
+	// Debounce delay in milliseconds for scroll event performance
+	const DEBOUNCE_DELAY = 10;
 
 	/**
 	 * Handle scroll event
@@ -37,7 +40,7 @@
 			} else {
 				header.classList.remove('scrolled');
 			}
-		}, 10);
+		}, DEBOUNCE_DELAY);
 	}
 
 	/**
