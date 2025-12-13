@@ -44,6 +44,7 @@ if ( ! $featured_query->have_posts() ) {
 <section 
 	class="hero-slider" 
 	aria-label="<?php esc_attr_e( 'Featured Poems', 'versalia' ); ?>"
+	tabindex="0"
 	data-auto-advance="<?php echo esc_attr( $auto_advance ? 'true' : 'false' ); ?>"
 	data-advance-speed="<?php echo esc_attr( $advance_speed ); ?>"
 	data-transition="<?php echo esc_attr( $transition_effect ); ?>"
@@ -74,10 +75,8 @@ if ( ! $featured_query->have_posts() ) {
 					</h2>
 					
 					<p class="slide-author">
-						<?php
-						/* translators: %s: Author name */
-						echo esc_html__( 'by', 'versalia' ) . ' <span class="author-name">' . esc_html( get_the_author() ) . '</span>';
-						?>
+						<?php echo esc_html__( 'by', 'versalia' ) . ' '; ?>
+						<span class="author-name"><?php echo esc_html( get_the_author() ); ?></span>
 					</p>
 					
 					<div class="slide-excerpt">

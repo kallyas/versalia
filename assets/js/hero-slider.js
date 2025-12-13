@@ -210,7 +210,9 @@ class HeroSlider {
 			pauseIcon.style.display = 'none';
 			playIcon.style.display = 'inline';
 		} else {
-			this.startAutoAdvance();
+			if (this.autoAdvance) {
+				this.startAutoAdvance();
+			}
 			this.pauseButton.setAttribute('aria-pressed', 'false');
 			this.pauseButton.setAttribute('aria-label', labels.pauseLabel);
 			pauseIcon.style.display = 'inline';

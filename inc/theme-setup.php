@@ -263,6 +263,13 @@ function versalia_enqueue_assets(): void {
 
 	// Hero Slider script and styles (for front page only)
 	if ( is_front_page() || is_home() ) {
+		wp_enqueue_style(
+			'versalia-hero-slider',
+			VERSALIA_THEME_URI . '/assets/css/components/hero-slider.css',
+			array( 'versalia-style' ),
+			VERSALIA_VERSION
+		);
+
 		wp_enqueue_script(
 			'versalia-hero-slider',
 			VERSALIA_THEME_URI . '/assets/js/hero-slider.js',
