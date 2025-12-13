@@ -243,6 +243,16 @@ function versalia_enqueue_assets(): void {
 		);
 	}
 
+	// Breadcrumb component
+	if ( ! is_front_page() ) {
+		wp_enqueue_style(
+			'versalia-breadcrumbs',
+			VERSALIA_THEME_URI . '/assets/css/components/breadcrumbs.css',
+			array( 'versalia-style' ),
+			VERSALIA_VERSION
+		);
+	}
+
 	// Navigation script
 	wp_enqueue_script(
 		'versalia-navigation',
