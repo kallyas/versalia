@@ -208,7 +208,7 @@
 	position: absolute;
 	left: -9999px;
 	top: 2.5em;
-	z-index: var(--z-tooltip);
+	z-index: calc(var(--z-sticky) + 1);
 	background-color: var(--color-surface);
 	color: var(--color-text);
 	padding: var(--spacing-md) var(--spacing-lg);

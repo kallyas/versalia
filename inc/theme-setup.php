@@ -252,6 +252,15 @@ function versalia_enqueue_assets(): void {
 		true
 	);
 
+	// Sticky header script
+	wp_enqueue_script(
+		'versalia-sticky-header',
+		VERSALIA_THEME_URI . '/assets/js/sticky-header.js',
+		array(),
+		VERSALIA_VERSION,
+		true
+	);
+
 	// Reading mode (only on single poems)
 	if ( is_singular( 'poem' ) ) {
 		wp_enqueue_script(
