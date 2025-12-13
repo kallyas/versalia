@@ -19,17 +19,61 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'poem-article' ); ?>>
+	<?php
+	// Display featured image if available
+	if ( has_post_thumbnail() ) :
+		?>
+		<div class="poem-featured-image">
+			<?php the_post_thumbnail( 'large', array( 'class' => 'featured-image' ) ); ?>
+		</div>
+	<?php endif; ?>
+
 	<header class="poem-header">
 		<?php the_title( '<h1 class="poem-title">', '</h1>' ); ?>
 
-		<?php
-		// Display author name
-		printf(
-			'<div class="poem-byline"><span class="by-text">%s</span> <span class="author-name">%s</span></div>',
-			esc_html__( 'by', 'versalia' ),
-			esc_html( get_the_author() )
-		);
-		?>
+		<div class="poem-meta-bar">
+			<span class="meta-item meta-author">
+				<span class="meta-label"><?php esc_html_e( 'By', 'versalia' ); ?></span>
+				<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="author-link">
+					<?php echo esc_html( get_the_author() ); ?>
+				</a>
+			</span>
+
+			<?php
+			$forms = get_the_terms( get_the_ID(), 'poetry_form' );
+			if ( $forms && ! is_wp_error( $forms ) ) :
+				$form = array_shift( $forms );
+				?>
+				<span class="meta-separator" aria-hidden="true">•</span>
+				<span class="meta-item meta-form">
+					<a href="<?php echo esc_url( get_term_link( $form ) ); ?>">
+						<?php echo esc_html( $form->name ); ?>
+					</a>
+				</span>
+			<?php endif; ?>
+
+			<span class="meta-separator" aria-hidden="true">•</span>
+			<span class="meta-item meta-date">
+				<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
+					<?php echo esc_html( get_the_date() ); ?>
+				</time>
+			</span>
+
+			<?php
+			$reading_time = versalia_get_poem_reading_time();
+			if ( $reading_time ) :
+				?>
+				<span class="meta-separator" aria-hidden="true">•</span>
+				<span class="meta-item meta-reading-time">
+					<?php
+					printf(
+						_n( '%s Min Read', '%s Min Read', $reading_time, 'versalia' ),
+						number_format_i18n( $reading_time )
+					);
+					?>
+				</span>
+			<?php endif; ?>
+		</div>
 	</header><!-- .poem-header -->
 
 	<div class="poem-actions">
@@ -90,6 +134,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php
 	// Display poem metadata
 	versalia_poem_meta();
+	?>
+
+	<?php
+	// Display author bio box if enabled
+	if ( get_theme_mod( 'versalia_show_author_bio', true ) ) :
+		get_template_part( 'template-parts/author/author', 'bio' );
+	endif;
 	?>
 
 	<?php if ( get_edit_post_link() ) : ?>
