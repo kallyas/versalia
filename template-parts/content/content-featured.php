@@ -57,6 +57,7 @@
 			<?php esc_html_e( 'Read Poem', 'versalia' ); ?>
 			<span class="screen-reader-text"><?php echo esc_html( get_the_title() ); ?></span>
 		</a>
+		<?php get_template_part( 'template-parts/buttons/bookmark-button' ); ?>
 	</footer>
 
 </article><!-- #post-<?php the_ID(); ?> -->

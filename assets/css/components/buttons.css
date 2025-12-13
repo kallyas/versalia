@@ -61,3 +61,87 @@ button:disabled,
 	background-color: var(--color-primary);
 	color: var(--color-background);
 }
+
+/* ====================================
+   Bookmark Button
+   ==================================== */
+.bookmark-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	padding: var(--spacing-xs) var(--spacing-sm);
+	font-family: var(--font-ui);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-normal);
+	text-transform: none;
+	letter-spacing: normal;
+	color: var(--color-text);
+	background-color: transparent;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	cursor: pointer;
+	transition: all var(--transition-fast);
+	text-decoration: none;
+}
+
+.bookmark-toggle:hover {
+	background-color: var(--color-surface);
+	border-color: var(--color-primary);
+	color: var(--color-primary);
+}
+
+.bookmark-toggle:focus {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+}
+
+.bookmark-toggle .bookmark-icon {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	transition: all var(--transition-fast);
+}
+
+.bookmark-toggle .bookmark-icon path {
+	fill: transparent;
+	stroke: currentColor;
+}
+
+/* Bookmarked state */
+.bookmark-toggle.is-bookmarked {
+	color: var(--color-accent);
+	border-color: var(--color-accent);
+	background-color: rgba(139, 115, 85, 0.05);
+}
+
+.bookmark-toggle.is-bookmarked .bookmark-icon path {
+	fill: currentColor;
+}
+
+.bookmark-toggle.is-bookmarked:hover {
+	background-color: rgba(139, 115, 85, 0.1);
+}
+
+/* Animation on click */
+.bookmark-toggle.bookmark-animating {
+	transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bookmark-toggle.bookmark-animating {
+		transform: none;
+	}
+}
+
+/* Screen reader text */
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}

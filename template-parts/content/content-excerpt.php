@@ -56,5 +56,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 			<span aria-hidden="true"> →</span>
 		</a>
+		<?php if ( 'poem' === get_post_type() ) : ?>
+			<?php get_template_part( 'template-parts/buttons/bookmark-button' ); ?>
+		<?php endif; ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
