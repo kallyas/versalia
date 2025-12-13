@@ -92,13 +92,18 @@
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-md);
 	padding: var(--spacing-lg);
-	transition: all var(--transition-fast);
+	transition: all var(--transition-base);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .poem-archive-container.view-grid .poem-excerpt:hover {
 	border-color: var(--color-accent);
-	box-shadow: var(--shadow-md);
-	transform: translateY(-2px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+	transform: translateY(-4px);
+}
+
+.poem-archive-container.view-grid .poem-excerpt:hover .entry-title a {
+	color: var(--color-accent);
 }
 
 .poem-archive-container.view-grid .entry-title {
@@ -153,6 +158,16 @@
 	background-color: var(--color-accent);
 	border-color: var(--color-accent);
 	color: var(--color-background);
+}
+
+/* ====================================
+   Reduced Motion
+   ==================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.poem-archive-container.view-grid .poem-excerpt:hover {
+		transform: none;
+	}
 }
 
 @media (max-width: 768px) {
