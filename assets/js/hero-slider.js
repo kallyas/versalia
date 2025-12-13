@@ -26,7 +26,8 @@ class HeroSlider {
 		this.transition = this.slider.dataset.transition || 'fade';
 
 		// Check for reduced motion preference
-		this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+		this.prefersReducedMotion = this.reducedMotionQuery.matches;
 
 		this.init();
 	}
@@ -41,6 +42,7 @@ class HeroSlider {
 		this.setupKeyboard();
 		this.setupTouch();
 		this.setupHoverPause();
+		this.setupReducedMotionListener();
 
 		// Respect reduced motion preference
 		if (this.prefersReducedMotion) {
@@ -138,6 +140,18 @@ class HeroSlider {
 		this.slider.addEventListener('mouseleave', () => {
 			if (this.autoAdvance && !this.isPaused) {
 				this.startAutoAdvance();
+			}
+		});
+	}
+
+	setupReducedMotionListener() {
+		// Listen for changes in motion preference
+		this.reducedMotionQuery.addEventListener('change', (e) => {
+			this.prefersReducedMotion = e.matches;
+			if (e.matches) {
+				// User enabled reduced motion - stop auto-advance
+				this.autoAdvance = false;
+				this.stopAutoAdvance();
 			}
 		});
 	}

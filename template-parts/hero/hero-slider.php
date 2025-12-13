@@ -44,7 +44,6 @@ if ( ! $featured_query->have_posts() ) {
 <section 
 	class="hero-slider" 
 	aria-label="<?php esc_attr_e( 'Featured Poems', 'versalia' ); ?>"
-	tabindex="0"
 	data-auto-advance="<?php echo esc_attr( $auto_advance ? 'true' : 'false' ); ?>"
 	data-advance-speed="<?php echo esc_attr( $advance_speed ); ?>"
 	data-transition="<?php echo esc_attr( $transition_effect ); ?>"
