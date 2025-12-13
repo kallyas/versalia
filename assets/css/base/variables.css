@@ -1,0 +1,198 @@
+/**
+ * CSS Custom Properties (Variables)
+ *
+ * This is the CRITICAL foundation file that defines all CSS variables
+ * for colors, typography, spacing, and reading modes.
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+:root {
+	/* ====================================
+	   Typography Scale (Major Third: 1.250)
+	   ==================================== */
+	--font-size-base: 1.125rem; /* 18px */
+	--font-size-xs: 0.72rem; /* 11.52px */
+	--font-size-sm: 0.9rem; /* 14.4px */
+	--font-size-md: 1.125rem; /* 18px - base */
+	--font-size-lg: 1.406rem; /* 22.5px */
+	--font-size-xl: 1.758rem; /* 28.13px */
+	--font-size-2xl: 2.197rem; /* 35.16px */
+	--font-size-3xl: 2.747rem; /* 43.95px */
+	--font-size-4xl: 3.433rem; /* 54.93px */
+
+	/* Line Heights */
+	--line-height-tight: 1.2;
+	--line-height-normal: 1.5;
+	--line-height-relaxed: 1.8;
+	--line-height-loose: 2.0;
+	--line-height-poetry: 2.2;
+
+	/* Letter Spacing */
+	--letter-spacing-tight: -0.02em;
+	--letter-spacing-normal: 0;
+	--letter-spacing-wide: 0.05em;
+	--letter-spacing-wider: 0.1em;
+
+	/* Font Families (Default: Classic Elegance) */
+	--font-heading: 'Crimson Text', Georgia, 'Times New Roman', serif;
+	--font-body: 'Crimson Text', Georgia, 'Times New Roman', serif;
+	--font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+	--font-mono: 'Courier New', Courier, monospace;
+
+	/* Font Weights */
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+
+	/* ====================================
+	   Spacing Scale (8px base unit)
+	   ==================================== */
+	--spacing-unit: 8px;
+	--spacing-xxs: calc(var(--spacing-unit) * 0.5); /* 4px */
+	--spacing-xs: var(--spacing-unit); /* 8px */
+	--spacing-sm: calc(var(--spacing-unit) * 2); /* 16px */
+	--spacing-md: calc(var(--spacing-unit) * 3); /* 24px */
+	--spacing-lg: calc(var(--spacing-unit) * 4); /* 32px */
+	--spacing-xl: calc(var(--spacing-unit) * 6); /* 48px */
+	--spacing-2xl: calc(var(--spacing-unit) * 8); /* 64px */
+	--spacing-3xl: calc(var(--spacing-unit) * 12); /* 96px */
+
+	/* ====================================
+	   Layout
+	   ==================================== */
+	--content-width: 720px;
+	--wide-width: 1200px;
+	--gutter: var(--spacing-md);
+
+	/* Margins */
+	--margin-mobile: 60px;
+	--margin-desktop: 120px;
+
+	/* ====================================
+	   Colors - Light Mode (Default)
+	   ==================================== */
+	--color-background: #FAFAF8;
+	--color-surface: #FFFFFF;
+	--color-text: #2C2C2C;
+	--color-text-light: #666666;
+	--color-primary: #2C2C2C;
+	--color-accent: #8B7355;
+	--color-border: #E5E5E5;
+	--color-border-light: #F0F0F0;
+
+	/* Link Colors */
+	--color-link: var(--color-primary);
+	--color-link-hover: var(--color-accent);
+	--color-link-visited: var(--color-text-light);
+
+	/* ====================================
+	   Z-Index Scale
+	   ==================================== */
+	--z-base: 1;
+	--z-dropdown: 100;
+	--z-sticky: 200;
+	--z-fixed: 300;
+	--z-modal-backdrop: 400;
+	--z-modal: 500;
+	--z-popover: 600;
+	--z-tooltip: 700;
+
+	/* ====================================
+	   Transitions
+	   ==================================== */
+	--transition-fast: 150ms ease;
+	--transition-base: 250ms ease;
+	--transition-slow: 300ms ease;
+	--transition-theme: 300ms ease;
+
+	/* ====================================
+	   Border Radius
+	   ==================================== */
+	--radius-sm: 2px;
+	--radius-md: 4px;
+	--radius-lg: 8px;
+	--radius-full: 9999px;
+
+	/* ====================================
+	   Shadows
+	   ==================================== */
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+	/* ====================================
+	   Breakpoints (for reference in media queries)
+	   ==================================== */
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+	--breakpoint-2xl: 1536px;
+}
+
+/* ====================================
+   Dark Reading Mode
+   ==================================== */
+[data-reading-mode="dark"],
+.reading-mode-dark {
+	--color-background: #1A1A1A;
+	--color-surface: #2C2C2C;
+	--color-text: #E5E5E5;
+	--color-text-light: #A0A0A0;
+	--color-primary: #E5E5E5;
+	--color-accent: #B8A084;
+	--color-border: #3C3C3C;
+	--color-border-light: #2C2C2C;
+	--color-link: var(--color-primary);
+	--color-link-hover: var(--color-accent);
+	--color-link-visited: var(--color-text-light);
+}
+
+/* ====================================
+   Sepia Reading Mode
+   ==================================== */
+[data-reading-mode="sepia"],
+.reading-mode-sepia {
+	--color-background: #F4ECD8;
+	--color-surface: #F9F3E5;
+	--color-text: #5C4B37;
+	--color-text-light: #8A7355;
+	--color-primary: #5C4B37;
+	--color-accent: #A67C52;
+	--color-border: #E5D5B7;
+	--color-border-light: #EBE0CC;
+	--color-link: var(--color-primary);
+	--color-link-hover: var(--color-accent);
+	--color-link-visited: var(--color-text-light);
+}
+
+/* ====================================
+   User Preference: Reduced Motion
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--transition-fast: 0ms;
+		--transition-base: 0ms;
+		--transition-slow: 0ms;
+		--transition-theme: 0ms;
+	}
+}
+
+/* ====================================
+   User Preference: Dark Color Scheme
+   ==================================== */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-reading-mode]) {
+		--color-background: #1A1A1A;
+		--color-surface: #2C2C2C;
+		--color-text: #E5E5E5;
+		--color-text-light: #A0A0A0;
+		--color-primary: #E5E5E5;
+		--color-accent: #B8A084;
+		--color-border: #3C3C3C;
+		--color-border-light: #2C2C2C;
+	}
+}
