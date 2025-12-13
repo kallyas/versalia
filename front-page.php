@@ -93,9 +93,9 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-// Conditional sidebar based on layout
-if ( in_array( $latest_layout, array( 'layout-a', 'layout-b' ) ) && is_active_sidebar( 'sidebar-1' ) ) {
-	get_sidebar();
-}
+// Conditional sidebar based on layout - Sidebar disabled
+// if ( in_array( $latest_layout, array( 'layout-a', 'layout-b' ) ) && is_active_sidebar( 'sidebar-1' ) ) {
+// 	get_sidebar();
+// }
 
 get_footer();
