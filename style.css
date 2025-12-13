@@ -1,0 +1,76 @@
+/*
+Theme Name: Versalia
+Theme URI: https://versalia.tumuhirwe.dev
+Author: Tumuhirwe Iden
+Author URI: https://tumuhirwe.dev
+Description: A minimal, typography-first WordPress theme specifically designed for poetry and literary content. Versalia prioritizes reading experience, preserving the intentional formatting of verse while providing modern features for poets, publishers, and literary magazines.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: versalia
+Tags: blog, poetry, literature, one-column, two-columns, custom-colors, custom-menu, editor-style, featured-images, full-width-template, rtl-language-support, theme-options, translation-ready, accessibility-ready, block-styles, wide-blocks
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Base
+    ## Normalize
+    ## Variables
+    ## Typography
+# Layout
+    ## Grid
+    ## Header
+    ## Footer
+    ## Navigation
+# Components
+    ## Buttons
+    ## Forms
+    ## Cards
+# Poems
+    ## Single Poem
+    ## Archive Poem
+    ## Reading Modes
+# Utilities
+    ## Spacing
+    ## Responsive
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+@import url('assets/css/base/normalize.css');
+@import url('assets/css/base/variables.css');
+@import url('assets/css/base/typography.css');
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import url('assets/css/layout/grid.css');
+@import url('assets/css/layout/header.css');
+@import url('assets/css/layout/footer.css');
+@import url('assets/css/layout/navigation.css');
+@import url('assets/css/layout/homepage.css');
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+@import url('assets/css/components/buttons.css');
+@import url('assets/css/components/forms.css');
+@import url('assets/css/components/widgets.css');
+
+/*--------------------------------------------------------------
+# Poems
+--------------------------------------------------------------*/
+@import url('assets/css/poems/single-poem.css');
+@import url('assets/css/poems/reading-modes.css');
+@import url('assets/css/poems/archive-poem.css');
+
+/*--------------------------------------------------------------
+# Utilities
+--------------------------------------------------------------*/
+@import url('assets/css/utilities/spacing.css');
+@import url('assets/css/utilities/responsive.css');
