@@ -109,6 +109,11 @@
 				body: formData,
 			});
 
+			// Check if response is ok
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
 			const data = await response.json();
 
 			if (data.success) {
@@ -128,12 +133,7 @@
 				fadeInContent(newArticles);
 
 				// Re-initialize bookmarks for new content
-				if (typeof window.initBookmarks === 'function') {
-					window.initBookmarks();
-				} else {
-					// Trigger a custom event that bookmarks.js can listen to
-					document.dispatchEvent(new CustomEvent('versalia:contentLoaded'));
-				}
+				document.dispatchEvent(new CustomEvent('versalia:contentLoaded'));
 
 				// Update button state
 				const newPage = data.data.current_page;
@@ -192,16 +192,6 @@
 
 		// Add click handler
 		button.addEventListener('click', handleLoadMore);
-
-		// Handle browser back/forward navigation
-		window.addEventListener('popstate', function(event) {
-			if (event.state && event.state.page) {
-				// Page navigation occurred
-				// In a full implementation, you might want to reload the page
-				// or restore the previous state
-				window.location.reload();
-			}
-		});
 	}
 
 	// Initialize when DOM is ready

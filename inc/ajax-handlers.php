@@ -44,9 +44,10 @@ function versalia_load_more_poems(): void {
 	if ( ! empty( $taxonomy ) && $term_id > 0 ) {
 		$args['tax_query'] = array(
 			array(
-				'taxonomy' => $taxonomy,
-				'field'    => 'term_id',
-				'terms'    => $term_id,
+				'taxonomy'         => $taxonomy,
+				'field'            => 'term_id',
+				'terms'            => $term_id,
+				'include_children' => true,
 			),
 		);
 	}
