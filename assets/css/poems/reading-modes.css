@@ -1,0 +1,206 @@
+/**
+ * Reading Modes (Light, Dark, Sepia)
+ *
+ * CRITICAL: Implements the three reading modes with smooth transitions.
+ * Modes are applied via data-reading-mode attribute or class on body.
+ *
+ * @package Versalia
+ * @since 1.0.0
+ */
+
+/* ====================================
+   Reading Mode Transitions
+   ==================================== */
+
+body,
+.site-header,
+.site-footer,
+.site-content,
+.poem-article,
+.widget-area {
+	transition: background-color var(--transition-theme), color var(--transition-theme);
+}
+
+a,
+button,
+.nav-links a {
+	transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* ====================================
+   Light Mode (Default)
+   Defined in variables.css
+   ==================================== */
+
+/* Light mode is the default - no additional styles needed */
+
+/* ====================================
+   Dark Mode
+   ==================================== */
+
+[data-reading-mode="dark"],
+.reading-mode-dark {
+	/* Colors defined in variables.css via CSS custom properties */
+
+	/* Additional dark mode specific adjustments */
+}
+
+[data-reading-mode="dark"] .site-header,
+.reading-mode-dark .site-header {
+	border-bottom-color: var(--color-border);
+}
+
+[data-reading-mode="dark"] .site-footer,
+.reading-mode-dark .site-footer {
+	border-top-color: var(--color-border);
+}
+
+[data-reading-mode="dark"] code,
+.reading-mode-dark code {
+	background-color: var(--color-border);
+}
+
+[data-reading-mode="dark"] .poem-navigation,
+.reading-mode-dark .poem-navigation {
+	border-top-color: var(--color-border);
+}
+
+[data-reading-mode="dark"] .poem-meta,
+.reading-mode-dark .poem-meta {
+	border-top-color: var(--color-border);
+}
+
+[data-reading-mode="dark"] .poem-header,
+.reading-mode-dark .poem-header {
+	border-bottom-color: var(--color-border);
+}
+
+/* ====================================
+   Sepia Mode
+   ==================================== */
+
+[data-reading-mode="sepia"],
+.reading-mode-sepia {
+	/* Colors defined in variables.css via CSS custom properties */
+}
+
+[data-reading-mode="sepia"] .site-header,
+.reading-mode-sepia .site-header {
+	border-bottom-color: var(--color-border);
+}
+
+[data-reading-mode="sepia"] .site-footer,
+.reading-mode-sepia .site-footer {
+	border-top-color: var(--color-border);
+}
+
+[data-reading-mode="sepia"] code,
+.reading-mode-sepia code {
+	background-color: var(--color-border);
+}
+
+[data-reading-mode="sepia"] .poem-navigation,
+.reading-mode-sepia .poem-navigation {
+	border-top-color: var(--color-border);
+}
+
+[data-reading-mode="sepia"] .poem-meta,
+.reading-mode-sepia .poem-meta {
+	border-top-color: var(--color-border);
+}
+
+[data-reading-mode="sepia"] .poem-header,
+.reading-mode-sepia .poem-header {
+	border-bottom-color: var(--color-border);
+}
+
+/* ====================================
+   Reading Mode Toggle Button States
+   ==================================== */
+
+.reading-mode-toggle[aria-pressed="true"] {
+	background-color: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-background);
+}
+
+/* ====================================
+   Smooth Theme Transitions
+   ==================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+	* {
+		transition-property: background-color, color, border-color;
+		transition-duration: var(--transition-theme);
+		transition-timing-function: ease;
+	}
+}
+
+/* ====================================
+   System Preference: Dark Mode
+   ==================================== */
+
+@media (prefers-color-scheme: dark) {
+	/*
+	 * Respect user's system preference for dark mode
+	 * Only applies if no explicit reading mode is set
+	 */
+	:root:not([data-reading-mode]) body {
+		/* Dark mode colors applied via variables.css */
+	}
+}
+
+/* ====================================
+   Print Styles (Override all modes)
+   ==================================== */
+
+@media print {
+	body,
+	[data-reading-mode="dark"],
+	[data-reading-mode="sepia"],
+	.reading-mode-dark,
+	.reading-mode-sepia {
+		--color-background: #fff;
+		--color-text: #000;
+		--color-text-light: #666;
+		--color-border: #ddd;
+	}
+
+	.reading-mode-toggle,
+	.poem-navigation .nav-archive {
+		display: none !important;
+	}
+}
+
+/* ====================================
+   Reading Mode Indicator (Optional)
+   ==================================== */
+
+[data-reading-mode]::before {
+	content: attr(data-reading-mode);
+	position: fixed;
+	bottom: var(--spacing-md);
+	right: var(--spacing-md);
+	padding: var(--spacing-xs) var(--spacing-sm);
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	font-size: var(--font-size-xs);
+	font-family: var(--font-ui);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wider);
+	opacity: 0;
+	pointer-events: none;
+	z-index: var(--z-tooltip);
+	transition: opacity var(--transition-fast);
+}
+
+[data-reading-mode].reading-mode-changing::before {
+	opacity: 0.8;
+	animation: fadeInOut 1.5s ease-in-out;
+}
+
+@keyframes fadeInOut {
+	0%, 100% { opacity: 0; }
+	50% { opacity: 0.8; }
+}
