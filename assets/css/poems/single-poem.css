@@ -117,6 +117,24 @@
 }
 
 /* ====================================
+   Drop Cap Styling
+   ==================================== */
+
+/**
+ * Decorative drop cap for the first letter of poem content
+ * Creates an elegant, large initial letter that spans multiple lines
+ */
+.poem-content p:first-of-type::first-letter {
+	float: left;
+	font-size: 4.5rem;
+	line-height: 0.9;
+	margin: 0.1em 0.1em 0 0;
+	font-family: var(--font-heading);
+	color: var(--color-accent);
+	font-weight: var(--font-weight-normal);
+}
+
+/* ====================================
    Poem Metadata
    ==================================== */
 
@@ -280,6 +298,11 @@
 
 	.poem-navigation .nav-home {
 		order: -1;
+	}
+
+	/* Adjust drop cap size for mobile */
+	.poem-content p:first-of-type::first-letter {
+		font-size: 3.5rem;
 	}
 }
 
