@@ -137,15 +137,52 @@ function versalia_widgets_init(): void {
 	);
 	*/
 
+	// Footer widget areas
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Footer', 'versalia' ),
+			'name'          => esc_html__( 'Footer Column 1', 'versalia' ),
 			'id'            => 'footer-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'versalia' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'description'   => esc_html__( 'First footer widget area', 'versalia' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 2', 'versalia' ),
+			'id'            => 'footer-2',
+			'description'   => esc_html__( 'Second footer widget area', 'versalia' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 3', 'versalia' ),
+			'id'            => 'footer-3',
+			'description'   => esc_html__( 'Third footer widget area', 'versalia' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 4', 'versalia' ),
+			'id'            => 'footer-4',
+			'description'   => esc_html__( 'Fourth footer widget area', 'versalia' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
 		)
 	);
 
@@ -276,6 +313,15 @@ function versalia_enqueue_assets(): void {
 	wp_enqueue_script(
 		'versalia-sticky-header',
 		VERSALIA_THEME_URI . '/assets/js/sticky-header.js',
+		array(),
+		VERSALIA_VERSION,
+		true
+	);
+
+	// Back to top button script
+	wp_enqueue_script(
+		'versalia-back-to-top',
+		VERSALIA_THEME_URI . '/assets/js/back-to-top.js',
 		array(),
 		VERSALIA_VERSION,
 		true

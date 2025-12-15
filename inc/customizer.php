@@ -485,6 +485,20 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 		array(
 			'default'           => true,
 			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'versalia_enable_drop_cap',
+		array(
+			'label'       => __( 'Enable Drop Cap', 'versalia' ),
+			'description' => __( 'Display decorative large first letter in poems.', 'versalia' ),
+			'section'     => 'versalia_poem_display',
+			'type'        => 'checkbox',
+		)
+	);
+
 	// Badge Settings Section
 	$wp_customize->add_section(
 		'versalia_badge_settings',
@@ -507,12 +521,6 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 	);
 
 	$wp_customize->add_control(
-		'versalia_enable_drop_cap',
-		array(
-			'label'       => __( 'Enable Drop Cap', 'versalia' ),
-			'description' => __( 'Display decorative large first letter in poems.', 'versalia' ),
-			'section'     => 'versalia_poem_display',
-			'type'        => 'checkbox',
 		'versalia_badge_color_scheme',
 		array(
 			'label'       => __( 'Badge Color Scheme', 'versalia' ),
@@ -524,6 +532,78 @@ function versalia_customize_register( WP_Customize_Manager $wp_customize ): void
 				'vibrant' => __( 'Vibrant (Bold Colors)', 'versalia' ),
 				'minimal' => __( 'Minimal (Monochrome)', 'versalia' ),
 			),
+		)
+	);
+
+	// Footer Section
+	$wp_customize->add_section(
+		'versalia_footer',
+		array(
+			'title'       => __( 'Footer', 'versalia' ),
+			'description' => __( 'Customize footer appearance and options.', 'versalia' ),
+			'priority'    => 70,
+		)
+	);
+
+	// Footer Background Color
+	$wp_customize->add_setting(
+		'versalia_footer_bg_color',
+		array(
+			'default'           => '#2C2C2C',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'versalia_footer_bg_color',
+			array(
+				'label'       => __( 'Footer Background Color', 'versalia' ),
+				'description' => __( 'Choose the background color for the footer.', 'versalia' ),
+				'section'     => 'versalia_footer',
+			)
+		)
+	);
+
+	// Enable Back to Top Button
+	$wp_customize->add_setting(
+		'versalia_enable_back_to_top',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		'versalia_enable_back_to_top',
+		array(
+			'label'       => __( 'Enable Back to Top Button', 'versalia' ),
+			'description' => __( 'Show a back to top button in the footer.', 'versalia' ),
+			'section'     => 'versalia_footer',
+			'type'        => 'checkbox',
+		)
+	);
+
+	// Copyright Text
+	$wp_customize->add_setting(
+		'versalia_copyright_text',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'wp_kses_post',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		'versalia_copyright_text',
+		array(
+			'label'       => __( 'Copyright Text', 'versalia' ),
+			'description' => __( 'Custom copyright text. Leave empty to use default.', 'versalia' ),
+			'section'     => 'versalia_footer',
+			'type'        => 'textarea',
 		)
 	);
 }
