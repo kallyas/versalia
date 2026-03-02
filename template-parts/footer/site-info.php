@@ -16,20 +16,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="site-info">
 	<div class="site-info-text">
 		<?php
-		printf(
-			/* translators: 1: Year, 2: Site name */
-			esc_html__( '&copy; %1$s %2$s', 'versalia' ),
-			esc_html( gmdate( 'Y' ) ),
-			esc_html( get_bloginfo( 'name' ) )
-		);
-		?>
-		<span class="sep"> | </span>
-		<?php
-		printf(
-			/* translators: %s: Theme name */
-			esc_html__( 'Theme: %s', 'versalia' ),
-			'<a href="https://versalia.tumuhirwe.dev">Versalia</a>'
-		);
+		$copyright_text = get_theme_mod( 'versalia_copyright_text', '' );
+		if ( ! empty( $copyright_text ) ) {
+			echo wp_kses_post( $copyright_text );
+		} else {
+			printf(
+				/* translators: 1: Year, 2: Site name */
+				esc_html__( '&copy; %1$s %2$s', 'versalia' ),
+				esc_html( gmdate( 'Y' ) ),
+				esc_html( get_bloginfo( 'name' ) )
+			);
+			?>
+			<span class="sep"> | </span>
+			<?php
+			printf(
+				/* translators: %s: Theme name */
+				esc_html__( 'Theme: %s', 'versalia' ),
+				'<a href="https://versalia.tumuhirwe.dev">Versalia</a>'
+			);
+		}
 		?>
 	</div>
 
